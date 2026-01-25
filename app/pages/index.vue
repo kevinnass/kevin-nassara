@@ -13,16 +13,14 @@
       <div class="text-3xl md:text-4xl leading-relaxed">
         <PenWriting 
           text="Développeur logiciel passionné, spécialisé dans la création d'expériences numériques élégantes et performantes."
-          :delay="1.2"
-          :speed="0.05"
+          :delay="0.5"
         />
       </div>
       
       <div class="text-2xl md:text-3xl text-gray-600 italic">
         <PenWriting 
           text="Expertise en Nuxt.js, Vue, et intégration d'IA pour des solutions modernes."
-          :delay="6.5"
-          :speed="0.06"
+          :delay="0.3"
         />
       </div>
     </main>
@@ -44,5 +42,5 @@
 }
 
 .delay-500 { animation-delay: 0.5s; }
-.delay-2000 { animation-delay: 11s; }
+.delay-2000 { animation-delay: 5s; }
 </style>

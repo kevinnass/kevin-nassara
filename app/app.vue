@@ -1,3 +1,15 @@
+<script setup lang="ts">
+import { usePenStore } from '~/stores/pen'
+
+const penStore = usePenStore()
+const route = useRoute()
+
+// Reset the pen writing queue whenever the page changes
+watch(() => route.path, () => {
+  penStore.reset()
+})
+</script>
+
 <template>
   <div class="min-h-screen bg-[#dcd7c9] overflow-hidden">
     <div class="paper-sheet">
