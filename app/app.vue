@@ -4,6 +4,8 @@
 
 <template>
   <div class="min-h-screen bg-[var(--bg)] transition-colors duration-500">
+    <Preloader />
+    <CustomCursor />
     <AppHeader />
     
     <main class="container-custom py-20 md:py-32">

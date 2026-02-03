@@ -5,13 +5,13 @@
 :root {
   --primary: #0f172a; /* Slate 900 */
   --accent: #4f46e5; /* Indigo 600 */
-  --accent-light: #eef2ff; /* Indigo 50 */
-  --bg: #ffffff; /* Visible Gray (Slate 100) */
-  --bg-offset: #e2e8f0; /* Slate 200 */
+  --accent-light: #f5f3ff; /* Indigo 50 (warm) */
+  --bg: #e8e8f2; /* Premium Off-White */
+  --bg-offset: #f1f5f9; /* Slate 100 */
   --text: #1e293b; /* Slate 800 */
   --text-muted: #64748b; /* Slate 500 */
-  --border: #c6bebe; /* Slate 300 */
-  --glass: rgba(240, 226, 226, 0.6);
+  --border: #b5b8bd; /* Slate 200 */
+  --glass: rgba(255, 255, 255, 0.5);
 }
 
 html.dark {
@@ -31,6 +31,11 @@ html.dark {
     @apply antialiased text-[var(--text)] bg-[var(--bg)];
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     scroll-behavior: smooth;
+    cursor: none !important;
+  }
+
+  a, button, [role="button"], input, select, textarea {
+    cursor: none !important;
   }
 
   h1, h2, h3, h4, h5, h6 {  
@@ -44,11 +49,11 @@ html.dark {
   }
 
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-8 py-4 bg-[var(--primary)] text-white font-bold rounded-lg transition-all hover:bg-indigo-600 hover:shadow-2xl hover:shadow-indigo-100 active:scale-95;
+    @apply inline-flex items-center gap-2 px-10 py-5 bg-[var(--primary)] text-white font-black rounded-2xl transition-all duration-500 hover:bg-slate-800 hover:shadow-xl hover:shadow-indigo-500/10 active:scale-95;
   }
 
   .glass-card {
-    @apply bg-white backdrop-blur-md border border-[var(--border)] rounded-[2rem] p-8 transition-all hover:shadow-2xl hover:shadow-slate-200/50 hover:border-indigo-400/30 dark:bg-slate-900/40;
+    @apply bg-white/40 backdrop-blur-xl border border-white/60 rounded-[2.5rem] p-10 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.04)] hover:-translate-y-1 dark:bg-slate-900/40 dark:border-slate-800/60 dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)];
   }
 
   .badge {
@@ -78,6 +83,26 @@ html.dark {
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+@keyframes starPreloader {
+  0% { transform: scale(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  40% { transform: scale(3) rotate(180deg); opacity: 1; }
+  100% { transform: scale(200) rotate(360deg); opacity: 1; }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-star-load {
+  animation: starPreloader 1.8s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+.animate-star-rotate {
+  animation: rotate var(--rotate-speed, 3s) linear infinite;
 }
 
 .delay-100 { animation-delay: 0.1s; }

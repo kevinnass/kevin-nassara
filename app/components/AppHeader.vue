@@ -16,8 +16,8 @@
           class="relative group py-2"
         >
           <span 
-            class="text-xs font-bold transition-all uppercase tracking-[0.2em]"
-            :class="[isActive ? 'text-indigo-600 dark:text-indigo-400 tracking-[0.3em]' : 'text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400']"
+            class="text-xs font-black transition-all uppercase tracking-[0.2em]"
+            :class="[isActive ? 'text-[var(--accent)] tracking-[0.3em]' : 'text-[var(--text-muted)] hover:text-[var(--primary)]']"
           >
             {{ link.label }}
           </span>
@@ -25,14 +25,14 @@
           <!-- Active Dot Indicator -->
           <Transition name="scale">
             <div 
-              v-if="isActive && route.path !== '/'" 
-              class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-indigo-600 dark:bg-indigo-400 rounded-full shadow-[0_0_8px_rgba(79,70,229,0.4)]"
+              v-if="isActive" 
+              class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-[var(--accent)] rounded-full shadow-[0_0_8px_rgba(79,70,229,0.3)]"
             ></div>
           </Transition>
         </NuxtLink>
 
         <!-- Theme Toggle Integration -->
-        <div class="pl-4 border-l border-slate-100 dark:border-slate-800 ml-4">
+        <div class="pl-4 border-l border-[var(--border)]">
           <ThemeToggle />
         </div>
       </div>
@@ -41,8 +41,8 @@
       <div class="md:hidden flex items-center gap-4">
         <ThemeToggle />
         <button class="w-10 h-10 flex flex-col items-end justify-center gap-1.5">
-          <div class="w-6 h-0.5 bg-slate-900 dark:bg-white rounded-full"></div>
-          <div class="w-4 h-0.5 bg-slate-900 dark:bg-white rounded-full"></div>
+          <div class="w-6 h-0.5 bg-[var(--primary)] rounded-full"></div>
+          <div class="w-4 h-0.5 bg-[var(--primary)] rounded-full"></div>
         </button>
       </div>
     </nav>
@@ -52,6 +52,7 @@
 <script setup lang="ts">
 const route = useRoute()
 const links = [
+  { label: 'Accueil', path: '/' },
   { label: 'Projets', path: '/projects' },
   { label: 'À propos', path: '/about' },
   { label: 'Contact', path: '/contact' }
