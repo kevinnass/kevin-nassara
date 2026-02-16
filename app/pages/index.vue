@@ -10,8 +10,8 @@
           Software <span class="text-[var(--accent)] italic">Developer</span>
         </h1>
         
-        <p class="text-2xl md:text-4xl text-[var(--text-muted)] font-medium max-w-3xl leading-tight animate-reveal delay-200">
-          Bâtir des écosystèmes numériques <span class="text-[var(--primary)]">performants</span>, où la complexité technique s'efface devant une <span class="text-[var(--primary)] italic">élégance pure</span>.
+        <p class="text-2xl md:text-4xl italic text-[var(--text-muted)] font-medium w-full text-justify leading-tight animate-reveal delay-200">
+          Je suis <span class="text-[var(--accent)]">Kevin Nassara</span>, un developpeur logiciel qui conçois des écosystèmes performants où la rigueur du code rencontre l'élégance du design, pour offrir des expériences numériques intuitives et sans friction.
         </p>
       </div>
 
@@ -27,10 +27,21 @@
     </header>
 
     <!-- 02. CORE STATISTICS -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-12 py-10 border-y border-[var(--border)] animate-reveal delay-500">
-      <div v-for="stat in stats" :key="stat.label" class="space-y-2">
-        <div class="text-3xl md:text-4xl text-center font-black text-[var(--primary)]">{{ stat.value }}</div>
-        <div class="text-[10px] text-center font-black uppercase tracking-[0.3em] text-[var(--text-muted)]">{{ stat.label }}</div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-12 py-10 border-y border-[var(--border)]">
+      <div 
+        v-for="(stat, index) in stats" 
+        :key="stat.label" 
+        class="space-y-2 group cursor-default opacity-0 animate-reveal"
+        :style="{ animationDelay: `${500 + index * 150}ms` }"
+      >
+        <div class="text-3xl md:text-3xl w-full text-center font-black text-[var(--primary)] transition-all duration-500 group-hover:scale-110 group-hover:text-[var(--accent)]">
+          {{ stat.value }}
+        </div>
+        <div class="text-[10px] text-center font-black uppercase tracking-[0.3em] text-[var(--text-muted)] transition-colors duration-300 group-hover:text-[var(--primary)]">
+          {{ stat.label }}
+        </div>
+        <!-- Animated underline on hover -->
+        <div class="w-0 h-0.5 bg-[var(--accent)] mx-auto rounded-full transition-all duration-500 group-hover:w-12"></div>
       </div>
     </div>
 
@@ -38,16 +49,20 @@
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
       <div class="space-y-10 animate-reveal delay-700">
         <div class="flex items-center gap-6">
-          <h2 class="text-xs font-black uppercase tracking-[0.4em] text-[var(--accent)]">Expertise & Vision</h2>
+          <h2 class="text-xs font-black uppercase tracking-[0.4em] text-[var(--accent)]">Ma Vision</h2>
           <div class="flex-grow h-px bg-[var(--accent-light)]"></div>
         </div>
-        <h3 class="text-4xl md:text-6xl font-black text-[var(--primary)] leading-[1.1]">
+        <h3 class="text-4xl md:text-4xl font-black text-[var(--primary)] leading-[1.1]">
           Transformer le code en <span class="text-[var(--accent)]">levier business</span> stratégique.
         </h3>
         <p class="text-xl leading-relaxed text-[var(--text-muted)] max-w-xl">
-          Mon approche ne s'arrête pas à l'écriture de lignes de code. J'analyse vos besoins métier pour concevoir des architectures frontend et fullstack qui maximisent la performance et la satisfaction utilisateur.
+          Mon approche ne s'arrête pas à l'écriture de lignes de code. J'analyse les besoins pour concevoir des solutions qui maximisent la performance et la satisfaction utilisateur.
         </p>
-        <div class="grid grid-cols-1 gap-6 pt-4">
+        
+      </div>
+
+      <!-- Real CV Quote/Summary Section -->
+      <div class="grid grid-cols-1 gap-6 pt-4">
           <div v-for="point in points" :key="point.title" class="flex gap-8 items-start">
             <div class="w-12 h-12 flex-shrink-0 bg-[var(--accent-light)] rounded-2xl flex items-center justify-center text-[var(--accent)] font-bold text-xl shadow-inner">
               ✓
@@ -58,78 +73,20 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- Real CV Quote/Summary Section -->
-      <div class="glass-card !p-12 space-y-8 animate-reveal delay-1000 bg-[var(--bg)]/40">
-        <div class="w-16 h-1 bg-[var(--accent)]"></div>
-        <p class="text-2xl font-medium leading-relaxed text-[var(--text)] italic">
-          "Passionné par l'ingénierie logicielle, j'interviens de la conception UI/UX à l'intégration backend pour créer des applications performantes et centrées utilisateur."
-        </p>
-        <div class="flex items-center gap-4 border-t border-[var(--border)] pt-8">
-          <div class="w-12 h-12 bg-[var(--primary)] rounded-full flex items-center justify-center text-[var(--bg)] font-black">KN</div>
-          <div>
-            <div class="font-black text-[var(--primary)]">Kevin Nassara</div>
-            <div class="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest">Master Expertise Informatique • Epitech</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 04. FEATURED WORKS PREVIEW -->
-    <section class="space-y-16 animate-reveal delay-500">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
-        <div class="space-y-4">
-          <h2 class="text-xs font-black uppercase tracking-[0.4em] text-[var(--text-muted)]">Travaux Sélectionnés</h2>
-          <h3 class="text-4xl md:text-6xl font-black text-[var(--primary)]">Réalisations <span class="text-[var(--accent)]">Phare.</span></h3>
-        </div>
-        <NuxtLink to="/projects" class="group flex items-center gap-4 text-xs font-black uppercase tracking-widest text-[var(--primary)] bg-[var(--bg-offset)] px-6 py-3 rounded-full hover:bg-[var(--accent-light)] transition-colors">
-          Voir tout le portfolio
-          <div class="w-8 h-8 rounded-full border border-[var(--border)] flex items-center justify-center group-hover:bg-[var(--primary)] group-hover:text-[var(--bg)] transition-all">
-            →
-          </div>
-        </NuxtLink>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
-        <div v-for="proj in featuredProjects" :key="proj.title" class="glass-card !p-0 overflow-hidden group">
-          <div class="aspect-video bg-[var(--bg-offset)] relative overflow-hidden">
-             <!-- Visual placeholder representing the app -->
-             <div class="absolute inset-0 flex items-center justify-center text-[var(--text-muted)] font-black text-8xl opacity-10 uppercase tracking-tighter select-none">
-               {{ proj.title.split(' ')[0] }}
-             </div>
-             <!-- Animated Gradient Overlay -->
-             <div class="absolute inset-0 bg-gradient-to-tr from-[var(--accent)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-             
-             <div class="absolute bottom-10 left-10 flex gap-3">
-               <span v-for="tag in proj.tags" :key="tag" class="px-5 py-2 bg-[var(--bg)]/90 backdrop-blur-md rounded-full text-[10px] font-black uppercase text-[var(--text-muted)] shadow-sm border border-[var(--border)]">
-                 {{ tag }}
-               </span>
-             </div>
-          </div>
-          <div class="p-12 space-y-5">
-            <div class="flex justify-between items-center text-[var(--primary)]">
-              <h4 class="text-3xl font-black group-hover:text-[var(--accent)] transition-colors tracking-tight">{{ proj.title }}</h4>
-              <span class="text-xs font-bold text-[var(--text-muted)] font-mono">{{ proj.year }}</span>
-            </div>
-            <p class="text-[var(--text-muted)] text-lg leading-relaxed font-medium line-clamp-2">{{ proj.desc }}</p>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- 05. TECHNICAL ECOSYSTEM -->
-    <div class="py-32 bg-slate-950 rounded-[3.5rem] text-center space-y-16 animate-reveal delay-300 relative overflow-hidden group/eco shadow-[0_40px_100px_rgba(0,0,0,0.1)]">
+    <div class="py-24 bg-slate-950 rounded-[3.5rem] text-center animate-reveal delay-300 relative overflow-hidden group/eco shadow-[0_40px_100px_rgba(0,0,0,0.1)]">
       <!-- Decorative Elements -->
       <div class="absolute -top-40 -right-40 w-96 h-96 bg-indigo-500/20 rounded-full blur-[120px] transition-transform duration-1000 group-hover/eco:scale-150"></div>
       <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-indigo-600/10 rounded-full blur-[120px] transition-transform duration-1000 group-hover/eco:scale-150"></div>
-      
+
       <div class="space-y-4 px-6 relative z-10">
-        <div class="text-indigo-400 text-xs font-black uppercase tracking-[0.5em] animate-pulse">L'écosystème Technique</div>
-        <h3 class="text-4xl md:text-6xl font-black text-white leading-tight">Technofocus <br/> <span class="text-indigo-400">& Stack.</span></h3>
+        <div class="text-indigo-300 text-xl font-black uppercase tracking-[0.5em] animate-pulse">L'écosystème Technique</div>
+        <h3 class="text-4xl md:text-5xl ont-black text-white leading-tight">Technofocus <br/> <span class="text-indigo-400">& Stack.</span></h3>
       </div>
-      
-      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-y-16 gap-x-8 px-12 opacity-60 hover:opacity-100 transition-opacity duration-1000 relative z-10">
+
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-y-16 gap-x-8 px-12 mt-10 opacity-60 hover:opacity-100 transition-opacity duration-1000 relative z-10">
         <div v-for="tech in fullStack" :key="tech" class="group/item flex flex-col items-center gap-4">
           <div class="text-xl font-black text-white tracking-tighter group-hover/item:text-indigo-400 group-hover/item:scale-125 transition-all cursor-default duration-500">
             {{ tech }}
@@ -141,15 +98,15 @@
 
     <!-- 06. FINAL CALL TO ACTION -->
     <section class="max-w-4xl mx-auto py-20 text-center space-y-12 animate-reveal delay-500">
-      <h2 class="text-5xl md:text-7xl lg:text-8xl font-black text-[var(--primary)] leading-[0.9] tracking-tighter">
-        Prêt à bâtir le <span class="italic text-[var(--accent)]">futur ?</span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-[var(--primary)] leading-[0.9] tracking-tighter">
+        Me contactez pour <span class="italic text-[var(--accent)]">discuter ?</span>
       </h2>
       <p class="text-xl md:text-2xl text-[var(--text-muted)] font-medium max-w-2xl mx-auto">
         Disponible pour des projets à forte valeur ajoutée, de l'élaboration de design systems à l'intégration de solutions IA.
       </p>
-      <div class="pt-6">
+      <div class="pt-">
         <NuxtLink to="/contact" class="btn-primary !px-16 !py-6 text-xl shadow-2xl shadow-[var(--accent-light)]">
-          Initialiser la discussion
+          Me contacter
         </NuxtLink>
       </div>
     </section>
@@ -158,16 +115,16 @@
 
 <script setup lang="ts">
 const stats = [
-  { label: "Expérience", value: "3+ Ans" },
-  { label: "Spécialisation", value: "Process et Intégration IA" },
-  { label: "Formation", value: "Master Epitech" },
-  { label: "Localisation", value: "Paris / ES" }
+  { label: "Expériences", value: "3+ Ans" },
+  { label: "Technologies maîtrisées", value: "10+" },
+  { label: "Veille Technologique", value: "100% Passionné" },
+  { label: "Cafés Bus", value: "∞" }
 ]
 
 const points = [
-  { title: "Frontend Haute-Performance", desc: "Optimisation Core Web Vitals et architectures Nuxt / React." },
-  { title: "Intégration Intelligence Artificielle", desc: "Automatisation de flux métier via LLM et analyse d'images." },
-  { title: "Infrastructure Évolutive", desc: "Bases de données Supabase, Firebase et déploiement cloud." }
+  { title: "Développement Frontend Moderne", desc: "Focus sur la création d'interfaces réactives et intuitives avec React et Nuxt." },
+  { title: "Intégration Intelligence Artificielle", desc: "Intégration de modèles d'IA pour enrichir les applications avec des fonctionnalités génératives, interactives, ou automatisées." },
+  { title: "Infrastructure Solide", desc: "Mise en œuvre de stack moderne et coherente pour des projets scalables." }
 ]
 
 const featuredProjects = [
