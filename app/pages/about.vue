@@ -2,7 +2,6 @@
   <div class="space-y-32">
     <!-- Profile Header -->
     <header class="max-w-4xl space-y-8">
-      <div class="badge w-fit animate-reveal">Master en Expertise Informatique • Epitech</div>
       <h1 class="text-5xl md:text-7xl font-black tracking-tight animate-reveal delay-100 text-[var(--primary)]">Parcours <br/><span class="text-[var(--accent)]">& Vision.</span></h1>
       <p class="text-xl md:text-2xl text-[var(--text-muted)] font-medium leading-relaxed animate-reveal delay-200">
         Développeur logiciel frontend/fullstack passionné avec une expertise affirmée dans l'intégration de l'IA et de l'automatisation.

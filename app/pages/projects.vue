@@ -1,18 +1,18 @@
 <template>
   <div class="space-y-24">
     <header class="max-w-3xl space-y-6">
-      <div class="badge w-fit animate-reveal">Réalisations & Expériences</div>
       <h1 class="text-5xl md:text-7xl font-black tracking-tight animate-reveal delay-100 text-[var(--primary)]">Projets <br/><span class="text-[var(--accent)]">Sélectionnés.</span></h1>
       <p class="text-xl md:text-2xl text-[var(--text-muted)] font-medium leading-relaxed animate-reveal delay-200">
-        Développement de produits industriels et projets personnels innovants intégrant Nuxt, React et IA.
+        Quelques projets personnels que j'ai développés.
       </p>
     </header>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-      <div 
+      <div
+        @click="openProject(project.link)"
         v-for="(project, index) in projects" 
         :key="project.title"
-        class="glass-card flex flex-col h-full group opacity-0 animate-reveal"
+        class="glass-ca p-6 border-2 border-black rounded-lg p-2 flex flex-col h-full group animate-reveal"
         :style="{ animationDelay: `${200 + index * 100}ms` }"
       >
         <div class="space-y-6 flex-grow">
@@ -52,30 +52,36 @@
 <script setup lang="ts">
 const projects = [
   {
-    title: "Carviz",
-    year: "2024-2025",
-    role: "Frontend Engineer",
-    description: "Refonte de l'architecture dashboard (Nuxt 3) et intégration de fonctionnalités IA d'analyse d'images et estimation de dommages.",
-    tags: ["Nuxt 3", "Vue", "TypeScript", "Supabase", "AI"]
-  },
-  {
-    title: "FCJM Logistics",
-    year: "2023",
-    role: "Developpeur Fullstack",
-    description: "Développement de fonctionnalités métier pour un dashboard de gestion logistique et mise en place de flux de données via Firebase.",
-    tags: ["React", "Next.js", "Firebase", "Firestore"]
+    title: "Gallery-La",
+    year: "Projet Personnel",
+    description: "Plateforme de galerie en ligne permettant aux artistes de gérer et exposer leurs œuvres en format numériques.",
+    link: "https://gallery-la.vercel.app/",
+    tags: ["React", "TypeScript", "Redux", "Supabase"]
   },
   {
     title: "JobAssist AI",
     year: "Projet Personnel",
     description: "Application web boostée à l'IA pour aider les candidats dans leur recherche d'emploi et la rédaction de candidatures.",
+    link: "https://job-assist.base44.app",
     tags: ["React", "Tailwind", "Framer Motion", "LLM"]
   },
   {
-    title: "Gallery-La",
+    title: "Bcn-Student-Life",
     year: "Projet Personnel",
-    description: "Plateforme de galerie en ligne sécurisée permettant aux artistes de gérer et exposer leurs œuvres numériques.",
-    tags: ["React", "TypeScript", "Redux", "Supabase"]
+    description: "Plateforme web servant de guide interactif destiné aux étudiants et regroupant toutes les informations essentielles pour vivre, étudier et s’intégrer à Barcelone",
+    link: "https://bcn-student-life.vercel.app/",
+    tags: ["Vue.js", "Pinia", "Tailwind"]
+  },
+  {
+    title: "AirQuality",
+    year: "Projet Personnel",
+    description: "Progressive web application qui permet, grâce a un kit de sensor IoT de déterminer la qualité de l’air ambiant",
+    link: "https://github.com/kevinnass/air-quality-iot",
+    tags: ["Vue.js", "Vite", "Vuex", "Firebase"]
   }
 ]
+
+const openProject = (link: string) => {
+  window.open(link, "_blank");
+}
 </script>

@@ -5,7 +5,6 @@
       <div class="absolute -top-20 -right-20 w-96 h-96 bg-[var(--accent-light)] rounded-full blur-[120px] -z-10 opacity-60"></div>
       
       <div class="space-y-8 max-w-5xl">
-        
         <h1 class="text-6xl md:text-7xl font-black leading-[0.85] tracking-tighter text-[var(--primary)] animate-reveal delay-100">
           Software <span class="text-[var(--accent)] italic">Developer</span>
         </h1>
@@ -29,7 +28,7 @@
     <!-- 02. CORE STATISTICS -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-12 py-10 border-y border-[var(--border)]">
       <div 
-        v-for="(stat, index) in stats" 
+        v-for="(stat, index) in stats"
         :key="stat.label" 
         class="space-y-2 group cursor-default opacity-0 animate-reveal"
         :style="{ animationDelay: `${500 + index * 150}ms` }"
@@ -105,7 +104,7 @@
         Disponible pour des projets à forte valeur ajoutée, de l'élaboration de design systems à l'intégration de solutions IA.
       </p>
       <div class="pt-">
-        <NuxtLink to="/contact" class="btn-primary !px-16 !py-6 text-xl shadow-2xl shadow-[var(--accent-light)]">
+        <NuxtLink to="/contact" class="px-10 py-5 border-2 rounded-2xl font-black transition-all text-lg bg-[var(--primary)] backdrop-blur-sm text-[var(--bg)]">
           Me contacter
         </NuxtLink>
       </div>
