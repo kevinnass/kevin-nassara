@@ -27,6 +27,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
+
 const x = ref(-100)
 const y = ref(-100)
 const isHovering = ref(false)

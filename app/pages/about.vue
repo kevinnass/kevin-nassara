@@ -139,8 +139,8 @@
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div v-for="skill in softSkills" :key="skill" class="glass-card !p-8 flex items-center gap-6 group hover:border-[var(--accent)] transition-all duration-500">
-          <div class="w-12 h-12 flex-shrink-0 bg-[var(--bg-offset)] rounded-xl flex items-center justify-center text-[var(--accent)] border border-[var(--border)] group-hover:bg-[var(--accent)] group-hover:text-white transition-all duration-500">
+        <div v-for="skill in softSkills" :key="skill" class=" text-[var(--text)] !p-8 flex items-center gap-6 group hover:border-[var(--accent)] transition-all duration-500">
+          <div class="w-12 h-12 flex-shrink-0 bg-[var(--bg-offset) rounded-xl flex items-center justify-center text-[var(--accent)] border border-[var(--border)] group-hover:bg-[var(--accent)] group-hover:text-white transition-all duration-500">
             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 3l1.5 7.5L21 12l-7.5 1.5L12 21l-1.5-7.5L3 12l7.5-1.5L12 3z" />
             </svg>
