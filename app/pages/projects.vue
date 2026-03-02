@@ -77,6 +77,13 @@ const projects = [
     tags: ["React", "TypeScript", "Redux", "Supabase"]
   },
   {
+    title: "Job Application Tracker",
+    year: "Web",
+    description: "Application web de suivi de candidatures pour centraliser et gérer ses recherches d'emploi. Accompagnée d'une extension navigateur pour ajouter des offres en un clic.",
+    link: "https://job-tracker-opal-ten.vercel.app",
+    tags: ["React", "TypeScript", "Tailwind", "Supabase", "Extension"]
+  },
+  {
     title: "JobAssist AI",
     year: "Web IA",
     description: "Application web boostée à l'IA pour aider les candidats dans leur recherche d'emploi et la rédaction de candidatures.",
