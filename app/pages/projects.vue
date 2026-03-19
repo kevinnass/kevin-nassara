@@ -70,6 +70,13 @@
 <script setup lang="ts">
 const projects = [
   {
+    title: "Gig Store",
+    year: "Web",
+    description: "Boutique e-commerce premium de maroquinerie et mode (Sacs, Chaussures, Accessoires).",
+    link: "https://gig-store.vercel.app/",
+    tags: ["Next.js", "TypeScript", "Tailwind", "E-commerce"]
+  },
+  {
     title: "Gallery-La",
     year: "Web",
     description: "Plateforme de galerie en ligne permettant aux artistes de gérer et exposer leurs œuvres en format numériques.",
