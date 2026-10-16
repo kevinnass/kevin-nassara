@@ -2,13 +2,13 @@ import { ref, readonly } from 'vue'
 
 const isMuted = ref(false)
 const isPlaying = ref(false)
+const volume = ref(0.35) // Volume par défaut à 35%
 
 let bgAudio: HTMLAudioElement | null = null
 let fadeInterval: any = null
 let hasAutoStarted = false
 
-// Volumes optimaux pour l'expérience sonore Wii
-const TARGET_BG_VOLUME = 0.32
+// Volumes de référence pour les effets sonores
 const THEME_SWITCH_VOLUME = 0.52
 const HEADER_NAV_VOLUME = 0.45
 const HOME_VOLUME = 0.55
@@ -43,9 +43,9 @@ function preloadSfx() {
 }
 
 /**
- * Joue un effet sonore Wii isolé
+ * Joue un effet sonore Wii isolé (ajusté selon le volume maître)
  */
-function playSFX(url: string, volume = 0.5) {
+function playSFX(url: string, baseVolume = 0.5) {
   if (typeof window === 'undefined') return
   try {
     // Si l'utilisateur clique alors que la musique n'a pas encore démarré (autoplay bloqué)
@@ -54,12 +54,12 @@ function playSFX(url: string, volume = 0.5) {
       startSound()
     }
 
+    // Calcul du volume effectif proportionnel
+    const effectiveVol = Math.max(0.08, Math.min(1, baseVolume * (volume.value / 0.35)))
     const sound = new Audio(url)
-    sound.volume = volume
+    sound.volume = effectiveVol
     sound.currentTime = 0
-    sound.play().catch(() => {
-      // Échec silencieux si bloqué
-    })
+    sound.play().catch(() => {})
   } catch (e) {
     // ignore
   }
@@ -85,23 +85,27 @@ async function startSound() {
       await playPromise
     }
 
-    // Fondu sonore agréable sur ~1.2s
+    // Le volume cible correspond au réglage actuel (ou 0.35 par défaut)
+    const targetVol = volume.value > 0 ? volume.value : 0.35
+    volume.value = targetVol
+
+    // Fondu sonore agréable sur ~1s
     const currentVol = bgAudio.volume
-    const duration = 1200
-    const steps = 24
+    const duration = 1000
+    const steps = 20
     const intervalTime = duration / steps
-    const stepIncrement = (TARGET_BG_VOLUME - currentVol) / steps
+    const stepIncrement = (targetVol - currentVol) / steps
 
     fadeInterval = setInterval(() => {
       if (!bgAudio) {
         clearInterval(fadeInterval)
         return
       }
-      if (bgAudio.volume + stepIncrement >= TARGET_BG_VOLUME) {
-        bgAudio.volume = TARGET_BG_VOLUME
+      if (bgAudio.volume + stepIncrement >= targetVol) {
+        bgAudio.volume = targetVol
         clearInterval(fadeInterval)
       } else {
-        bgAudio.volume = Math.min(TARGET_BG_VOLUME, bgAudio.volume + stepIncrement)
+        bgAudio.volume = Math.min(targetVol, bgAudio.volume + stepIncrement)
       }
     }, intervalTime)
   } catch (e) {
@@ -120,7 +124,7 @@ function stopSound() {
 
   clearInterval(fadeInterval)
   const currentVol = bgAudio.volume
-  const duration = 600
+  const duration = 500
   const steps = 15
   const intervalTime = duration / steps
   const stepDecrement = currentVol / steps
@@ -148,6 +152,34 @@ async function toggleSound() {
     stopSound()
   } else {
     await startSound()
+  }
+}
+
+/**
+ * Modifie le volume sonore en direct (entre 0 et 1)
+ */
+function setVolume(newVal: number) {
+  const clamped = Math.max(0, Math.min(1, newVal))
+  volume.value = clamped
+
+  if (clamped === 0) {
+    if (isPlaying.value) {
+      stopSound()
+    }
+    return
+  }
+
+  if (bgAudio) {
+    bgAudio.volume = clamped
+  }
+
+  // Si le son était coupé et que l'utilisateur augmente la jauge, on relance le son
+  if (!isPlaying.value) {
+    isMuted.value = false
+    isPlaying.value = true
+    if (bgAudio) {
+      bgAudio.play().catch(() => {})
+    }
   }
 }
 
@@ -213,6 +245,8 @@ export function useAmbientSound() {
   return {
     isMuted: readonly(isMuted),
     isPlaying: readonly(isPlaying),
+    volume: readonly(volume),
+    setVolume,
     toggleSound,
     startSound,
     stopSound,

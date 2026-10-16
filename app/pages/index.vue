@@ -10,9 +10,10 @@
       @navigate="scrollToStage" 
     />
 
-    <!-- Indicateurs d'état -->
+    <!-- Indicateurs d'état et Footer discret centré au milieu du bas -->
     <ScrollProgress :progress="scrollProgress" />
     <FloatingNavHint />
+    <AppFooter />
 
     <!-- FENÊTRE SCÉNIQUE FIXE : Le contenu change en permanence au scroll avec transition fluide -->
     <div class="fixed inset-0 z-10 flex items-center justify-center p-6 md:p-12 pointer-events-none select-none">
@@ -236,6 +237,7 @@ import SunCanvas from '~/components/SunCanvas.vue'
 import ConceptHeader from '~/components/ConceptHeader.vue'
 import ScrollProgress from '~/components/ScrollProgress.vue'
 import FloatingNavHint from '~/components/FloatingNavHint.vue'
+import AppFooter from '~/components/AppFooter.vue'
 
 // Métadonnées SEO
 useHead({
