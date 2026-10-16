@@ -1,148 +1,377 @@
 <template>
-  <div class="space-y-40 pb-20">
-    <!-- 01. SUPER HERO SECTION -->
-    <header class="min-h-[60vh] flex flex-col justify-center space-y-10 group relative">
-      <div class="absolute -top-20 -right-20 w-96 h-96 bg-[var(--accent-light)] rounded-full blur-[120px] -z-10 opacity-60"></div>
-      
-      <div class="space-y-8 max-w-5xl">
-        <h1 class="text-6xl md:text-7xl font-black leading-[0.85] tracking-tighter text-[var(--primary)] animate-reveal delay-100">
-          Software <span class="text-[var(--accent)] italic">Developer</span>
-        </h1>
-        
-        <p class="text-2xl md:text-4xl italic text-[var(--text-muted)] font-medium w-full text-justify leading-tight animate-reveal delay-200">
-          Je suis <span class="text-[var(--accent)]">Kevin Nassara</span>, un developpeur logiciel qui conçois des écosystèmes performants où la rigueur du code rencontre l'élégance du design, pour offrir des expériences numériques intuitives et sans friction.
-        </p>
-      </div>
+  <div class="relative min-h-[500vh]" ref="containerRef">
+    <!-- Astres Célestes Fixes (Soleil dans le coin sup. gauche le jour / Lune dans le coin sup. droit la nuit) -->
+    <SunCanvas :progress="scrollProgress" />
 
-      <div class="flex flex-wrap gap-6 pt-10 animate-reveal delay-300">
-        <NuxtLink to="/projects" class="px-10 py-5 border-2 rounded-2xl font-black transition-all text-lg bg-[var(--primary)] backdrop-blur-sm text-[var(--bg)]">
-          Explorer mes travaux
-          <!-- <span class="ml-2 group-hover:translate-x-2 transition-transform duration-500">→</span> -->
-        </NuxtLink>
-        <NuxtLink to="/about" class="px-10 py-5 border-2 border-[var(--primary)] hover:border-[var(--accent)] rounded-2xl font-black transition-all text-lg bg-[var(--bg)]/20 backdrop-blur-sm text-[var(--primary)]">
-          À propos de moi
-        </NuxtLink>
-      </div>
-    </header>
+    <!-- En-tête Conceptuel Fixe avec Navigation, Audio Synth et Bascule Jour/Nuit -->
+    <ConceptHeader 
+      :currentStage="currentStageIndex" 
+      :stages="stages" 
+      @navigate="scrollToStage" 
+    />
 
-    <!-- 02. CORE STATISTICS -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-12 py-10 border-y border-[var(--border)]">
-      <div 
-        v-for="(stat, index) in stats"
-        :key="stat.label" 
-        class="space-y-2 group cursor-default opacity-0 animate-reveal"
-        :style="{ animationDelay: `${500 + index * 150}ms` }"
-      >
-        <div class="text-3xl md:text-3xl w-full text-center font-black text-[var(--primary)] transition-all duration-500 group-hover:scale-110 group-hover:text-[var(--accent)]">
-          {{ stat.value }}
-        </div>
-        <div class="text-[10px] text-center font-black uppercase tracking-[0.3em] text-[var(--text-muted)] transition-colors duration-300 group-hover:text-[var(--primary)]">
-          {{ stat.label }}
-        </div>
-        <!-- Animated underline on hover -->
-        <div class="w-0 h-0.5 bg-[var(--accent)] mx-auto rounded-full transition-all duration-500 group-hover:w-12"></div>
-      </div>
-    </div>
+    <!-- Indicateurs d'état -->
+    <ScrollProgress :progress="scrollProgress" />
+    <FloatingNavHint />
 
-    <!-- 03. VISION & PHILOSOPHY -->
-    <section class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
-      <div class="space-y-10 animate-reveal delay-700">
-        <div class="flex items-center gap-6">
-          <h2 class="text-xs font-black uppercase tracking-[0.4em] text-[var(--accent)]">Ma Vision</h2>
-          <div class="flex-grow h-px bg-[var(--accent-light)]"></div>
-        </div>
-        <h3 class="text-4xl md:text-4xl font-black text-[var(--primary)] leading-[1.1]">
-          Transformer le code en <span class="text-[var(--accent)]">levier business</span> stratégique.
-        </h3>
-        <p class="text-xl leading-relaxed text-[var(--text-muted)] max-w-xl">
-          Mon approche ne s'arrête pas à l'écriture de lignes de code. J'analyse les besoins pour concevoir des solutions qui maximisent la performance et la satisfaction utilisateur.
-        </p>
-        
-      </div>
-
-      <!-- Real CV Quote/Summary Section -->
-      <div class="grid grid-cols-1 gap-6 pt-4">
-          <div v-for="point in points" :key="point.title" class="flex gap-8 items-start">
-            <div class="w-12 h-12 flex-shrink-0 bg-[var(--accent-light)] rounded-2xl flex items-center justify-center text-[var(--accent)] font-bold text-xl shadow-inner">
-              ✓
+    <!-- FENÊTRE SCÉNIQUE FIXE : Le contenu change en permanence au scroll avec transition fluide -->
+    <div class="fixed inset-0 z-10 flex items-center justify-center p-6 md:p-12 pointer-events-none select-none">
+      <div class="w-full max-w-4xl mx-auto pointer-events-auto">
+        <Transition name="stage-fade" mode="out-in">
+          
+          <!-- ÉTAPE 0 : HERO ULTRA-ÉPURÉ & MINIMALISTE (Style Gallery-la) -->
+          <section 
+            v-if="currentStageIndex === 0" 
+            key="stage-0" 
+            class="space-y-4 text-center"
+          >
+            <div class="space-y-2">
+              <span class="text-xs uppercase tracking-[0.4em] text-stone-400 dark:text-stone-500 font-medium font-sans">
+                Software Engineer
+              </span>
+              <h1 class="font-display font-medium text-7xl sm:text-8xl md:text-9xl lg:text-[10.5rem] text-stone-900 dark:text-stone-100 tracking-tight leading-[0.85]">
+                Kevin Nassara
+              </h1>
             </div>
+            <p class="font-sans text-sm sm:text-base md:text-lg text-stone-500 dark:text-stone-400 font-normal max-w-md mx-auto pt-4 leading-relaxed">
+              Concevoir des architectures numériques, des systèmes intelligents et des interfaces épurées.
+            </p>
+          </section>
+
+          <!-- ÉTAPE 1 : DÉMARCHE & VISION -->
+          <section 
+            v-else-if="currentStageIndex === 1" 
+            key="stage-1" 
+            class="space-y-4 max-w-xl mx-auto text-left"
+          >
             <div class="space-y-1">
-              <h4 class="font-black text-xl text-[var(--primary)] tracking-tight">{{ point.title }}</h4>
-              <p class="text-[var(--text-muted)] text-base leading-relaxed">{{ point.desc }}</p>
+              <span class="text-xs uppercase tracking-[0.4em] text-stone-400 dark:text-stone-500 font-medium font-sans">
+                0 1
+              </span>
+              <h2 class="font-display font-medium text-5xl sm:text-6xl md:text-7xl text-stone-900 dark:text-stone-100 tracking-tight leading-none">
+                Démarche
+              </h2>
+              <p class="font-sans text-sm sm:text-base text-stone-500 dark:text-stone-400 font-normal leading-relaxed pt-1">
+                Une architecture pensée pour laisser place à la clarté et à l'efficacité.
+              </p>
             </div>
-          </div>
-        </div>
-    </section>
+            <div class="pt-6 flex items-center gap-4 text-xs font-sans text-stone-400 dark:text-stone-500">
+              <span>IA & LLM</span>
+              <span>•</span>
+              <span>Systèmes Distribués</span>
+              <span>•</span>
+              <span>Front-End d'Excellence</span>
+            </div>
+          </section>
 
-    <!-- 05. TECHNICAL ECOSYSTEM -->
-    <div class="py-24 bg-slate-950 rounded-[3.5rem] text-center animate-reveal delay-300 relative overflow-hidden group/eco shadow-[0_40px_100px_rgba(0,0,0,0.1)]">
-      <!-- Decorative Elements -->
-      <div class="absolute -top-40 -right-40 w-96 h-96 bg-indigo-500/20 rounded-full blur-[120px] transition-transform duration-1000 group-hover/eco:scale-150"></div>
-      <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-indigo-600/10 rounded-full blur-[120px] transition-transform duration-1000 group-hover/eco:scale-150"></div>
+          <!-- ÉTAPE 2 : PROJETS ÉPURÉS (LISTE MINIMALISTE - STYLE GALLERY-LA) -->
+          <section 
+            v-else-if="currentStageIndex === 2" 
+            key="stage-2" 
+            class="space-y-6 max-w-2xl mx-auto text-left"
+          >
+            <div class="space-y-1">
+              <span class="text-xs uppercase tracking-[0.4em] text-stone-400 dark:text-stone-500 font-medium font-sans">
+                0 2
+              </span>
+              <h2 class="font-display font-medium text-5xl sm:text-6xl md:text-7xl text-stone-900 dark:text-stone-100 tracking-tight leading-none">
+                Projets
+              </h2>
+              <p class="font-sans text-sm sm:text-base text-stone-500 dark:text-stone-400 font-normal leading-relaxed pt-1">
+                Une sélection de plateformes, d'outils SaaS et de systèmes construits avec soin.
+              </p>
+            </div>
 
-      <div class="space-y-4 px-6 relative z-10">
-        <div class="text-indigo-300 text-xl font-black uppercase tracking-[0.5em] animate-pulse">L'écosystème Technique</div>
-        <h3 class="text-4xl md:text-5xl ont-black text-white leading-tight">Technofocus <br/> <span class="text-indigo-400">& Stack.</span></h3>
-      </div>
+            <!-- Liste ultra-épurée sans surcharge visuelle -->
+            <div class="space-y-3 pt-4">
+              <a
+                v-for="project in allProjects"
+                :key="project.title"
+                :href="project.link"
+                target="_blank"
+                class="group flex items-baseline justify-between py-2.5 border-b border-stone-300/40 dark:border-stone-800 transition-colors"
+              >
+                <div class="flex items-baseline gap-4">
+                  <span class="font-display font-medium text-xl sm:text-2xl text-stone-900 dark:text-stone-100 group-hover:text-amber-700 dark:group-hover:text-sky-400 transition-colors">
+                    {{ project.title }}
+                  </span>
+                  <span class="font-sans text-xs text-stone-400 dark:text-stone-500 uppercase tracking-wider font-medium hidden sm:inline">
+                    {{ project.tag }}
+                  </span>
+                </div>
+                <span class="font-sans text-sm text-stone-400 group-hover:text-stone-900 dark:group-hover:text-white transition-colors">
+                  ↗
+                </span>
+              </a>
+            </div>
+          </section>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-y-16 gap-x-8 px-12 mt-10 opacity-60 hover:opacity-100 transition-opacity duration-1000 relative z-10">
-        <div v-for="tech in fullStack" :key="tech" class="group/item flex flex-col items-center gap-4">
-          <div class="text-xl font-black text-white tracking-tighter group-hover/item:text-indigo-400 group-hover/item:scale-125 transition-all cursor-default duration-500">
-            {{ tech }}
-          </div>
-          <div class="w-1 h-1 bg-indigo-500/0 rounded-full group-hover/item:bg-indigo-500 transition-all duration-500"></div>
-        </div>
+          <!-- ÉTAPE 3 : PARCOURS MINIMALISTE (STYLE GALLERY-LA) -->
+          <section 
+            v-else-if="currentStageIndex === 3" 
+            key="stage-3" 
+            class="space-y-6 max-w-2xl mx-auto text-left"
+          >
+            <div class="space-y-1">
+              <span class="text-xs uppercase tracking-[0.4em] text-stone-400 dark:text-stone-500 font-medium font-sans">
+                0 3
+              </span>
+              <h2 class="font-display font-medium text-5xl sm:text-6xl md:text-7xl text-stone-900 dark:text-stone-100 tracking-tight leading-none">
+                Expérience
+              </h2>
+              <p class="font-sans text-sm sm:text-base text-stone-500 dark:text-stone-400 font-normal leading-relaxed pt-1">
+                Parcours d'ingénieur logiciel entre scale-ups, startups et projets d'envergure.
+              </p>
+            </div>
+
+            <div class="space-y-4 pt-4">
+              <div 
+                v-for="exp in experienceList" 
+                :key="exp.company"
+                class="py-3 border-b border-stone-300/40 dark:border-stone-800 space-y-1"
+              >
+                <div class="flex items-baseline justify-between">
+                  <h3 class="font-display font-medium text-xl sm:text-2xl text-stone-900 dark:text-stone-100">
+                    {{ exp.role }}
+                  </h3>
+                  <span class="font-sans text-xs text-stone-400 dark:text-stone-500 uppercase tracking-wider font-medium">
+                    {{ exp.period }}
+                  </span>
+                </div>
+                <div class="flex items-center gap-2 font-sans text-xs sm:text-sm text-stone-500 dark:text-stone-400">
+                  <span class="font-medium text-stone-700 dark:text-stone-300">{{ exp.company }}</span>
+                  <span>—</span>
+                  <span>{{ exp.focus }}</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ÉTAPE 4 : STACK ÉPURÉE (STYLE GALLERY-LA) -->
+          <section 
+            v-else-if="currentStageIndex === 4" 
+            key="stage-4" 
+            class="space-y-6 max-w-2xl mx-auto text-left"
+          >
+            <div class="space-y-1">
+              <span class="text-xs uppercase tracking-[0.4em] text-stone-400 dark:text-stone-500 font-medium font-sans">
+                0 4
+              </span>
+              <h2 class="font-display font-medium text-5xl sm:text-6xl md:text-7xl text-stone-900 dark:text-stone-100 tracking-tight leading-none">
+                Stack
+              </h2>
+              <p class="font-sans text-sm sm:text-base text-stone-500 dark:text-stone-400 font-normal leading-relaxed pt-1">
+                Technologies modernes, typées et performantes au quotidien.
+              </p>
+            </div>
+
+            <div class="space-y-3 pt-4">
+              <div 
+                v-for="(techs, category) in skillClusters" 
+                :key="category"
+                class="py-2.5 border-b border-stone-300/40 dark:border-stone-800 flex flex-col sm:flex-row sm:items-baseline justify-between gap-1"
+              >
+                <span class="font-sans text-xs uppercase tracking-wider text-stone-400 dark:text-stone-500 font-medium w-36">
+                  {{ category }}
+                </span>
+                <span class="font-display font-medium text-lg sm:text-xl text-stone-800 dark:text-stone-200 tracking-wide">
+                  {{ techs }}
+                </span>
+              </div>
+            </div>
+          </section>
+
+          <!-- ÉTAPE 5 : CONTACT MINIMALISTE (STYLE GALLERY-LA) -->
+          <section 
+            v-else-if="currentStageIndex === 5" 
+            key="stage-5" 
+            class="space-y-6 max-w-2xl mx-auto text-center"
+          >
+            <div class="space-y-1">
+              <span class="text-xs uppercase tracking-[0.4em] text-stone-400 dark:text-stone-500 font-medium font-sans">
+                0 5
+              </span>
+              <h2 class="font-display font-medium text-6xl sm:text-7xl md:text-8xl text-stone-900 dark:text-stone-100 tracking-tight leading-none">
+                Contact
+              </h2>
+            </div>
+
+            <p class="font-sans text-sm sm:text-base md:text-lg text-stone-500 dark:text-stone-400 font-normal max-w-md mx-auto pt-2 leading-relaxed">
+              Disponible pour opportunités d'ingénierie logicielle, missions techniques et collaborations.
+            </p>
+
+            <div class="pt-6 flex flex-wrap items-center justify-center gap-8 font-sans text-xs uppercase tracking-[0.2em] font-medium text-stone-600 dark:text-stone-400">
+              <a 
+                href="mailto:kevin.nassara@epitech.eu"
+                class="hover:text-stone-950 dark:hover:text-white transition-colors underline underline-offset-4"
+              >
+                kevin.nassara@epitech.eu
+              </a>
+              <a 
+                href="https://linkedin.com/in/kevin-nassara" 
+                target="_blank"
+                class="hover:text-stone-950 dark:hover:text-white transition-colors"
+              >
+                LinkedIn ↗
+              </a>
+              <a 
+                href="https://github.com/kevinnass" 
+                target="_blank"
+                class="hover:text-stone-950 dark:hover:text-white transition-colors"
+              >
+                GitHub ↗
+              </a>
+            </div>
+          </section>
+
+        </Transition>
       </div>
     </div>
-
-    <!-- 06. FINAL CALL TO ACTION -->
-    <section class="max-w-4xl mx-auto py-20 text-center space-y-12 animate-reveal delay-500">
-      <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-[var(--primary)] leading-[0.9] tracking-tighter">
-        Me contactez pour <span class="italic text-[var(--accent)]">discuter ?</span>
-      </h2>
-      <p class="text-xl md:text-2xl text-[var(--text-muted)] font-medium max-w-2xl mx-auto">
-        Disponible pour des projets à forte valeur ajoutée, de l'élaboration de design systems à l'intégration de solutions IA.
-      </p>
-      <div class="pt-">
-        <NuxtLink to="/contact" class="px-10 py-5 border-2 rounded-2xl font-black transition-all text-lg bg-[var(--primary)] backdrop-blur-sm text-[var(--bg)]">
-          Me contacter
-        </NuxtLink>
-      </div>
-    </section>
   </div>
 </template>
 
 <script setup lang="ts">
-const stats = [
-  { label: "Expériences", value: "3+ Ans" },
-  { label: "Technologies maîtrisées", value: "10+" },
-  { label: "Veille Technologique", value: "100% Passionné" },
-  { label: "Cafés Bus", value: "∞" }
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import SunCanvas from '~/components/SunCanvas.vue'
+import ConceptHeader from '~/components/ConceptHeader.vue'
+import ScrollProgress from '~/components/ScrollProgress.vue'
+import FloatingNavHint from '~/components/FloatingNavHint.vue'
+
+// Métadonnées SEO
+useHead({
+  title: 'Kevin Nassara — Software Engineer',
+  meta: [
+    { name: 'description', content: 'Portfolio minimaliste de Kevin Nassara, Software Engineer spécialisé en IA, SaaS et interfaces web modernes.' }
+  ]
+})
+
+// Définition des 6 chapitres conceptuels
+const stages = [
+  { id: 'hero', label: 'Accueil' },
+  { id: 'demarche', label: 'Démarche' },
+  { id: 'projets', label: 'Projets' },
+  { id: 'parcours', label: 'Parcours' },
+  { id: 'stack', label: 'Stack' },
+  { id: 'contact', label: 'Contact' },
 ]
 
-const points = [
-  { title: "Développement Frontend Moderne", desc: "Focus sur la création d'interfaces réactives et intuitives avec React et Nuxt." },
-  { title: "Intégration Intelligence Artificielle", desc: "Intégration de modèles d'IA pour enrichir les applications avec des fonctionnalités génératives, interactives, ou automatisées." },
-  { title: "Infrastructure Solide", desc: "Mise en œuvre de stack moderne et coherente pour des projets scalables." }
-]
+const containerRef = ref<HTMLElement | null>(null)
+const scrollProgress = ref(0)
+const currentStageIndex = ref(0)
 
-const featuredProjects = [
-  { 
-    title: "Carviz Dashboard", 
-    desc: "Refonte de l'architecture frontend d'un dashboard analytique industriel avec intégration d'IA prédictive.",
-    year: "2024",
-    tags: ["Nuxt 3", "AI", "TypeScript"]
+// Gestion du scroll fluide & détection d'étape
+const handleScroll = () => {
+  if (typeof window === 'undefined') return
+  const scrollTop = window.scrollY || document.documentElement.scrollTop
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+
+  if (maxScroll <= 0) {
+    scrollProgress.value = 0
+    currentStageIndex.value = 0
+    return
+  }
+
+  const rawProgress = Math.min(Math.max(scrollTop / maxScroll, 0), 1)
+  scrollProgress.value = rawProgress
+
+  // Découpage en 6 paliers avec transition fluide
+  const totalStages = stages.length
+  const calculatedIndex = Math.min(Math.floor(rawProgress * totalStages), totalStages - 1)
+  currentStageIndex.value = calculatedIndex
+}
+
+// Navigation par clics ou touches du clavier
+const scrollToStage = (stageIdx: number) => {
+  if (typeof window === 'undefined') return
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+  const targetScroll = (stageIdx / (stages.length - 1)) * maxScroll
+  window.scrollTo({
+    top: targetScroll,
+    behavior: 'smooth'
+  })
+}
+
+const handleKeydown = (e: KeyboardEvent) => {
+  if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+    if (currentStageIndex.value < stages.length - 1) {
+      e.preventDefault()
+      scrollToStage(currentStageIndex.value + 1)
+    }
+  } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+    if (currentStageIndex.value > 0) {
+      e.preventDefault()
+      scrollToStage(currentStageIndex.value - 1)
+    }
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll, { passive: true })
+  window.addEventListener('keydown', handleKeydown)
+  handleScroll()
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+  window.removeEventListener('keydown', handleKeydown)
+})
+
+// Données Projets épurées
+const allProjects = [
+  {
+    title: 'GenAI Analytics Platform',
+    tag: 'Nuxt 3 • Python • LangChain',
+    link: 'https://github.com/kevinnass'
   },
-  { 
-    title: "FCJM Logistics", 
-    desc: "Optimisation des flux de données logistiques et conception d'une interface de gestion métier haute-disponibilité.",
-    year: "2023",
-    tags: ["Next.js", "Firebase", "Realtime"]
+  {
+    title: 'Real-Time IoT & Energy Monitor',
+    tag: 'Vue 3 • TypeScript • WebSockets',
+    link: 'https://github.com/kevinnass'
+  },
+  {
+    title: 'Design System & UI Library',
+    tag: 'Storybook • Tailwind • Vue 3',
+    link: 'https://github.com/kevinnass'
+  },
+  {
+    title: 'SaaS Workflow Automator',
+    tag: 'Node.js • PostgreSQL • Redis',
+    link: 'https://github.com/kevinnass'
+  },
+  {
+    title: 'Interactive Geospatial Explorer',
+    tag: 'Mapbox GL • GeoJSON • Pinia',
+    link: 'https://github.com/kevinnass'
   }
 ]
 
-const fullStack = [
-  "NUXT 3", "VUE 3", "REACT", "TYPESCRIPT", "NEST.JS", "NODE.JS", 
-  "SUPABASE", "FIREBASE", "POSTGRES", "AWS", "DOCKER", "CI/CD"
+// Chronologie Professionnelle épurée
+const experienceList = [
+  {
+    role: 'Software Engineer & Consultant',
+    company: 'Projets Innovants',
+    period: '2023 — Présent',
+    focus: 'Architectures IA, SaaS & performance web'
+  },
+  {
+    role: 'Full-Stack Developer',
+    company: 'Tech Ecosystem',
+    period: '2022 — 2023',
+    focus: 'APIs distribuées & optimisation data'
+  },
+  {
+    role: 'Diplôme Ingénierie Logicielle',
+    company: 'EPITECH',
+    period: '2020 — 2025',
+    focus: 'Architectures logicielles & systèmes'
+  }
 ]
+
+// Écosystème Technique épuré
+const skillClusters = {
+  'Front-End': 'Vue 3, Nuxt 4, TypeScript, TailwindCSS, GSAP',
+  'Back-End': 'Node.js, Python, FastAPI, REST, GraphQL, WebSockets',
+  'IA & Data': 'LLM Integration, LangChain, Prompt Engineering',
+  'DevOps': 'Docker, CI/CD, Git, Linux, GCP'
+}
 </script>

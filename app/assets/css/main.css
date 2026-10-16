@@ -3,122 +3,201 @@
 @tailwind utilities;
 
 :root {
-  --primary: #0f172a; /* Slate 900 */
-  --accent: #4f46e5; /* Indigo 600 */
-  --accent-light: #f5f3ff; /* Indigo 50 (warm) */
-  --bg: #eaeaf3; /* Premium Off-White */
-  --bg-offset: #ababc6; /* Slate 100 */
-  --text: #1e293b; /* Slate 800 */
-  --text-muted: #4c4e50; /* Slate 500 */
-  --border: #b5b8bd; /* Slate 200 */
-  --glass: rgb(248, 242, 242);
+  /* Mode Jour : Beige Éditorial Chaud & Vivant */
+  --bg-sand: #F5EFEB;
+  --bg-sand-warm: #EFE7DE;
+  --bg-sand-card: rgba(247, 241, 235, 0.85);
+  --bg-sand-card-border: rgba(120, 113, 108, 0.18);
+  --ink: #1C1917; /* Stone 900 */
+  --ink-soft: #44403C; /* Stone 700 */
+  --ink-muted: #78716C; /* Stone 500 */
+  --ink-faint: #A8A29E; /* Stone 400 */
+  --sun-gold: #D97706; /* Amber 600 */
+  --sun-glow: rgba(245, 158, 11, 0.35);
+  --terracotta: #C2410C;
+  --border: rgba(120, 113, 108, 0.18);
 }
 
 html.dark {
-  --primary: #f1f5f9; /* Slate 100 */
-  --accent: #818cf8; /* Indigo 400 */
-  --accent-light: rgba(79, 70, 229, 0.1);
-  --bg: #0f172a; /* Slate 900 */
-  --bg-offset: #1e293b; /* Slate 800 */
-  --text: #e2e8f0; /* Slate 200 */
-  --text-muted: #ccd0d6; /* Slate 400 */
-  --border: #334155; /* Slate 700 */
-  --glass: rgba(15, 23, 42, 0.7);
+  /* Mode Nuit : Nuit Profonde Indigo / Ardoise & Lune Argentée */
+  --bg-sand: #0c0e14;
+  --bg-sand-warm: #121520;
+  --bg-sand-card: rgba(20, 24, 36, 0.72);
+  --bg-sand-card-border: rgba(148, 163, 184, 0.15);
+  --ink: #F1F5F9; /* Slate 100 */
+  --ink-soft: #CBD5E1; /* Slate 300 */
+  --ink-muted: #94A3B8; /* Slate 400 */
+  --ink-faint: #64748B; /* Slate 500 */
+  --sun-gold: #93C5FD; /* Blue 300 / Moonlight */
+  --sun-glow: rgba(147, 197, 253, 0.25);
+  --terracotta: #60A5FA;
+  --border: rgba(148, 163, 184, 0.15);
 }
 
 @layer base {
-  body {
-    @apply antialiased text-[var(--text)] bg-[var(--bg)];
+  html, body {
+    @apply antialiased;
+    background-color: var(--bg-sand);
+    color: var(--ink);
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    scroll-behavior: smooth;
-    cursor: none !important;
+    overflow-x: hidden;
+    transition: background-color 1.4s cubic-bezier(0.25, 1, 0.5, 1), color 1.4s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
-  a, button, [role="button"], input, select, textarea {
-    cursor: none !important;
+  /* Transition globale cinématique de la page lors du switch Jour / Nuit */
+  .theme-transitioning,
+  .theme-transitioning *,
+  .theme-transitioning *::before,
+  .theme-transitioning *::after {
+    transition: background-color 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+                border-color 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+                color 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+                box-shadow 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+                fill 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+                stroke 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+                opacity 1.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    transition-delay: 0s !important;
   }
 
-  h1, h2, h3, h4, h5, h6 {  
-    @apply font-black tracking-tight text-[var(--primary)];
+  /* Grain overlay subtil & texture papier fait main */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Khand', sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+  /* Custom selection */
+  ::selection {
+    background-color: #FDE68A;
+    color: #1C1917;
+  }
+
+  html.dark ::selection {
+    background-color: #3B82F6;
+    color: #FFFFFF;
   }
 }
 
 @layer components {
-  .container-custom {
-    @apply max-w-7xl mx-auto px-6 md:px-12 lg:px-16;
+  .editorial-serif {
+    font-family: 'Cormorant Garamond', Georgia, serif;
   }
 
-  .btn-primary {
-    @apply inline-flex items-center gap-2 px-10 py-5 bg-[var(--primary)] text-white font-black rounded-2xl transition-all duration-500 hover:bg-slate-800 hover:shadow-xl hover:shadow-indigo-500/10 active:scale-95;
+  .display-font {
+    font-family: 'Khand', sans-serif;
   }
 
-  .glass-card {
-    @apply bg-[var(--glass)] backdrop-blur-xl border border-white/60 rounded-lg p-8 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.04)] hover:-translate-y-1 dark:bg-slate-300 dark:border-slate-800/60 dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)];
+  .mono-font {
+    font-family: 'Geist Mono', monospace;
   }
 
-  .badge {
-    @apply px-3 py-1 bg-[var(--accent-light)] text-[var(--accent)] text-[10px] font-black uppercase tracking-widest rounded-full border border-indigo-100;
-  }
-
-  .text-luxury {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-indigo-900 to-slate-900;
+  .card-monolith {
+    background: var(--bg-sand-card);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--bg-sand-card-border);
+    box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.04);
+    transition: background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease;
   }
 }
 
-/* Dynamics & Animations */
-@keyframes slideUpReveal {
-  from { opacity: 0; transform: translateY(60px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Animations perpétuelles organiques */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.4deg);
+  }
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+@keyframes pulseWarmth {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.95;
+  }
 }
 
-.animate-reveal {
+@keyframes shimmerGlow {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(0.95);
+  }
+}
+
+.animate-pulse-warmth {
+  animation: pulseWarmth 9s ease-in-out infinite;
+}
+
+.animate-float-gentle {
+  animation: floatGentle 7s ease-in-out infinite;
+}
+
+.animate-shimmer-glow {
+  animation: shimmerGlow 6s ease-in-out infinite;
+}
+
+/* Transitions douces entre états */
+.stage-fade-enter-active,
+.stage-fade-leave-active {
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s ease;
+}
+
+.stage-fade-enter-from {
   opacity: 0;
-  animation: slideUpReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform: translateY(28px) scale(0.98);
+  filter: blur(6px);
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes starPreloader {
-  0% { transform: scale(0) rotate(0deg); opacity: 0; }
-  10% { opacity: 1; }
-  40% { transform: scale(3) rotate(180deg); opacity: 1; }
-  100% { transform: scale(200) rotate(360deg); opacity: 1; }
-}
-
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.animate-star-load {
-  animation: starPreloader 1.8s cubic-bezier(0.7, 0, 0.3, 1) forwards;
-}
-
-.animate-star-rotate {
-  animation: rotate var(--rotate-speed, 3s) linear infinite;
-}
-
-.delay-100 { animation-delay: 0.1s; }
-.delay-200 { animation-delay: 0.2s; }
-.delay-300 { animation-delay: 0.3s; }
-.delay-500 { animation-delay: 0.5s; }
-.delay-700 { animation-delay: 0.7s; }
-.delay-1000 { animation-delay: 1s; }
-
-/* Page Transitions */
-.page-enter-active,
-.page-leave-active {
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.page-enter-from,
-.page-leave-to {
+.stage-fade-leave-to {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(-28px) scale(0.98);
+  filter: blur(6px);
+}
+
+/* Transition de rotation subtile pour l'icône soleil/lune */
+.icon-flip-enter-active,
+.icon-flip-leave-active {
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.icon-flip-enter-from {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.6);
+}
+
+.icon-flip-leave-to {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.6);
+}
+
+/* Print / PDF Styles */
+@media print {
+  body::before {
+    display: none !important;
+  }
+  .no-print {
+    display: none !important;
+  }
 }

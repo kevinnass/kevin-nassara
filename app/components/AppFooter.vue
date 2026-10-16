@@ -7,10 +7,14 @@
         </div>
       </div>
       
-      <div class="flex gap-10">
-        <a v-for="social in socials" :key="social.name" :href="social.link" class="text-xs font-bold text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors uppercase tracking-[0.15em]">
+      <div class="flex items-center gap-8">
+        <a v-for="social in socials" :key="social.name" :href="social.link" target="_blank" class="text-xs font-bold text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors uppercase tracking-[0.15em]">
           {{ social.name }}
         </a>
+        <NuxtLink to="/portfolio-pdf" class="text-xs font-black text-[var(--accent)] hover:underline uppercase tracking-[0.15em] flex items-center gap-1">
+          <span>Télécharger Portfolio (PDF)</span>
+          <span>📄</span>
+        </NuxtLink>
       </div>
     </div>
   </footer>
@@ -18,7 +22,7 @@
 
 <script setup lang="ts">
 const socials = [
-  { name: 'GitHub', link: '#' },
-  { name: 'LinkedIn', link: '#' },
+  { name: 'GitHub', link: 'https://github.com/kevinnass' },
+  { name: 'LinkedIn', link: 'https://linkedin.com/in/kevin-nassara' },
 ]
 </script>
