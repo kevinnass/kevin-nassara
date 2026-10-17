@@ -12,7 +12,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-[var(--bg-sand)] text-[var(--ink)] transition-colors duration-[1400ms] ease-[cubic-bezier(0.25,1,0.5,1)]">
+  <div class="min-h-screen bg-transparent text-inherit">
     <!-- Pour la page d'accueil conceptuelle monopage, le layout plein écran prend les rênes -->
     <template v-if="route.path === '/'">
       <main>

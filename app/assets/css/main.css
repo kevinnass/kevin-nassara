@@ -2,6 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
+@property --bg-sand {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #F5EFEB;
+}
+
+@property --bg-sand-warm {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #EFE7DE;
+}
+
+@property --bg-sand-card {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(247, 241, 235, 0.85);
+}
+
+@property --bg-sand-card-border {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(120, 113, 108, 0.18);
+}
+
+@property --ink {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #1C1917;
+}
+
+@property --ink-soft {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #44403C;
+}
+
+@property --ink-muted {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #78716C;
+}
+
+@property --border {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(120, 113, 108, 0.18);
+}
+
 :root {
   /* Mode Jour : Beige Éditorial Chaud & Vivant */
   --bg-sand: #F5EFEB;
@@ -35,28 +83,36 @@ html.dark {
 }
 
 @layer base {
-  html, body {
+  html {
     @apply antialiased;
-    background-color: var(--bg-sand);
-    color: var(--ink);
+    background-color: #F5EFEB;
+    color: #1C1917;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     overflow-x: hidden;
-    transition: background-color 1.4s cubic-bezier(0.25, 1, 0.5, 1), color 1.4s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: background-color 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+                color 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+                --bg-sand 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+                --bg-sand-card 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+                --ink 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+                --border 1.4s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
-  /* Transition globale cinématique de la page lors du switch Jour / Nuit */
-  .theme-transitioning,
-  .theme-transitioning *,
-  .theme-transitioning *::before,
-  .theme-transitioning *::after {
+  html.dark {
+    background-color: #0c0e14;
+    color: #F1F5F9;
+  }
+
+  body {
+    background-color: transparent;
+    color: inherit;
+  }
+
+  /* Transition progressive cinématique des conteneurs et textes */
+  h1, h2, h3, h4, p, span, a, nav, header, footer, .card-monolith {
     transition: background-color 1.4s cubic-bezier(0.25, 1, 0.5, 1),
                 border-color 1.4s cubic-bezier(0.25, 1, 0.5, 1),
                 color 1.4s cubic-bezier(0.25, 1, 0.5, 1),
-                box-shadow 1.4s cubic-bezier(0.25, 1, 0.5, 1),
-                fill 1.4s cubic-bezier(0.25, 1, 0.5, 1),
-                stroke 1.4s cubic-bezier(0.25, 1, 0.5, 1),
-                opacity 1.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
-    transition-delay: 0s !important;
+                box-shadow 1.4s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
   /* Grain overlay subtil & texture papier fait main */

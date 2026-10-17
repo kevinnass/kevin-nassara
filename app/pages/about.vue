@@ -4,7 +4,7 @@
     <header class="max-w-4xl space-y-8">
       <h1 class="text-5xl md:text-7xl font-black tracking-tight animate-reveal delay-100 text-[var(--primary)]">À propos de <span class="text-[var(--accent)]">Moi.</span></h1>
       <p class="text-xl md:text-2xl text-[var(--text-muted)] font-medium leading-relaxed animate-reveal delay-200">
-        Développeur logiciel front-end / full-stack passionné avec une solide expérience dans des produits et SaaS intégrant l'IA, la data visualisation et l'automatisation. Mon objectif : <span class="text-[var(--accent)] font-bold">transformer le code en levier business stratégique</span> en concevant des applications performantes, évolutives et centrées sur l'utilisateur.
+        Ingénieur logiciel & data alliant développement full-stack moderne (Vue/Nuxt, TypeScript, FastAPI) et expertise data (SQL avancé, modélisation relationnelle, pipelines ETL et dashboards décisionnels). Mon objectif : <span class="text-[var(--accent)] font-bold">concevoir des architectures robustes et des applications performantes</span> centrées sur l'utilisateur et la prise de décision.
       </p>
     </header>
 
@@ -209,9 +209,10 @@ const softSkills = [
 ]
 
 const skillGroups = {
-  "Frontend & UI/UX": ["Vue.js", "Nuxt.js", "React.js", "Next.js", "Tailwind CSS", "Pinia (Store)", "PWA", "Storybook", "Framer Motion", "GSAP"],
-  "IA Workflow": ["Cursor", "Antigravity", "Claude Code", "Spec-Driven", "Context Engineering"],
-  "Backend & DB": ["FastAPI (Python)", "Nest.js", "Node.js", "Supabase (PostgreSQL)", "Redis", "Prisma", "REST API", "GraphQL"],
+  "Software & Frontend": ["Vue.js", "Nuxt.js", "React.js", "Next.js", "Tailwind CSS", "Pinia (Store)", "PWA", "Storybook", "Framer Motion", "GSAP"],
+  "Data & Business Intelligence": ["SQL Avancé", "PostgreSQL", "Supabase", "Metabase", "Power BI", "Data Dictionary", "ETL/ELT", "Data Quality"],
+  "IA Workflow": ["Cursor", "Antigravity", "Claude Code", "Spec-Driven", "Context Engineering", "Computer Vision"],
+  "Backend & Cloud": ["FastAPI (Python)", "Nest.js", "Node.js", "Supabase (PostgreSQL)", "Firebase Firestore", "Redis", "REST API", "GraphQL"],
   "Testing & Observabilité": ["Vitest (unit)", "Jest", "Playwright (e2e)", "Cypress", "Sentry (Monitoring)"],
   "DevOps & CI/CD": ["AWS", "Docker", "GitLab / GitHub Actions", "Kubernetes", "Vercel"],
   "Langages": ["JavaScript / TypeScript", "Python", "Rust", "C/C++"]

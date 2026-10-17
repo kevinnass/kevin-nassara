@@ -1,25 +1,28 @@
 <template>
   <div class="fixed inset-0 pointer-events-none overflow-hidden z-0 select-none">
     
-    <!-- LUEUR D'AMBIANCE GLOBALE (Bascule douce et progressive calée sur le lever/coucher des astres) -->
+    <!-- LUEUR D'AMBIANCE GLOBALE JOUR (Soleil en haut à gauche) -->
     <div 
-      class="fixed inset-0 pointer-events-none transition-all duration-[1400ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
-      :style="{
-        background: isDark
-          ? 'radial-gradient(circle at 86% 12%, rgba(147, 197, 253, 0.09) 0%, rgba(99, 102, 241, 0.03) 45%, transparent 70%)'
-          : 'radial-gradient(circle at 14% 12%, rgba(251, 191, 36, 0.10) 0%, rgba(245, 158, 11, 0.03) 45%, transparent 70%)'
-      }"
+      class="fixed inset-0 pointer-events-none transition-opacity duration-[1400ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
+      :class="isDark ? 'opacity-0' : 'opacity-100'"
+      style="background: radial-gradient(circle at 14% 12%, rgba(251, 191, 36, 0.12) 0%, rgba(245, 158, 11, 0.04) 45%, transparent 70%);"
+    ></div>
+
+    <!-- LUEUR D'AMBIANCE GLOBALE NUIT (Lune en haut à droite) -->
+    <div 
+      class="fixed inset-0 pointer-events-none transition-opacity duration-[1400ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
+      :class="isDark ? 'opacity-100' : 'opacity-0'"
+      style="background: radial-gradient(circle at 86% 12%, rgba(147, 197, 253, 0.12) 0%, rgba(99, 102, 241, 0.04) 45%, transparent 70%);"
     ></div>
 
     <!-- 1. SOLEIL (Coin Supérieur Gauche : Se lève le jour, se couche progressivement vers l'horizon bas-gauche la nuit) -->
     <div 
       class="fixed -top-16 -left-16 sm:-top-24 sm:-left-24 md:-top-32 md:-left-32 w-[320px] h-[320px] sm:w-[440px] sm:h-[440px] md:w-[560px] md:h-[560px] pointer-events-none will-change-transform"
       :style="{
+        transform: isDark ? 'translate3d(-100px, 300px, 0) scale(0.5)' : 'translate3d(0, 0, 0) scale(1)',
+        opacity: isDark ? 0 : 1,
         transition: 'transform 1.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.3s cubic-bezier(0.25, 1, 0.5, 1)'
       }"
-      :class="isDark 
-        ? 'opacity-0 scale-[0.65] -translate-x-32 translate-y-40 pointer-events-none' 
-        : 'opacity-100 scale-100 translate-x-0 translate-y-0'"
     >
       <!-- Halo externe solaire : intensité adoucie et chaleureuse -->
       <div 
@@ -46,11 +49,10 @@
     <div 
       class="fixed -top-16 -right-16 sm:-top-24 sm:-right-24 md:-top-32 md:-right-32 w-[300px] h-[300px] sm:w-[420px] sm:h-[420px] md:w-[540px] md:h-[540px] pointer-events-none will-change-transform"
       :style="{
+        transform: isDark ? 'translate3d(0, 0, 0) scale(1)' : 'translate3d(100px, 300px, 0) scale(0.5)',
+        opacity: isDark ? 1 : 0,
         transition: 'transform 1.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.3s cubic-bezier(0.25, 1, 0.5, 1)'
       }"
-      :class="isDark 
-        ? 'opacity-100 scale-100 translate-x-0 translate-y-0' 
-        : 'opacity-0 scale-[0.65] translate-x-32 translate-y-40 pointer-events-none'"
     >
       <!-- Halo externe lunaire : lumière d'argent et bleu nuit douce -->
       <div 

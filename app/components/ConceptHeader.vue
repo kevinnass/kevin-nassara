@@ -8,7 +8,7 @@
         @click="handleHomeClick"
         class="pointer-events-auto shrink-0 group card-monolith w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 shadow-sm"
         :class="currentStage === 0 
-          ? 'bg-stone-900 text-stone-100 dark:bg-sky-500 dark:text-stone-950 border-stone-900 dark:border-sky-400 shadow-md ring-2 ring-stone-900/10 dark:ring-sky-400/20' 
+          ? 'bg-amber-200/80 text-stone-950 dark:bg-sky-300 dark:text-stone-950 border-amber-300 dark:border-sky-300 shadow-md' 
           : 'text-stone-700 dark:text-stone-300 hover:text-stone-950 dark:hover:text-white hover:border-amber-600/40 dark:hover:border-sky-400/40'"
         title="Accueil"
         aria-label="Accueil"

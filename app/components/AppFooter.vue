@@ -4,7 +4,7 @@
     <div class="pointer-events-auto flex flex-wrap items-center justify-center gap-x-3.5 sm:gap-x-4 gap-y-1 text-[11px] sm:text-xs font-sans text-stone-400 dark:text-stone-500 tracking-wide transition-colors duration-500">
       <span>© {{ currentYear }} Kevin Nassara</span>
       <span class="opacity-40">•</span>
-      <p class="hover:text-stone-950 dark:hover:text-white transition-colors"">
+      <p class="hover:text-stone-950 dark:hover:text-white transition-colors">
         kevin.nassara@epitech.eu
       </p>
       <span class="opacity-40">•</span>

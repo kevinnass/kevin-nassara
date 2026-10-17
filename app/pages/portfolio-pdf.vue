@@ -20,7 +20,7 @@
           <div class="space-y-2">
             <div class="text-xs font-black uppercase tracking-[0.3em] text-[var(--accent)]">Dossier de Compétences & Portfolio</div>
             <h1 class="text-4xl md:text-6xl font-black text-[var(--primary)] tracking-tight">Kevin Nassara</h1>
-            <h2 class="text-xl md:text-2xl font-bold text-[var(--accent)]">Software Engineer — Full-Stack, Web & IA</h2>
+            <h2 class="text-xl md:text-2xl font-bold text-[var(--accent)]">Software Data Engineer</h2>
           </div>
 
           <!-- Contact Badges -->
@@ -34,7 +34,7 @@
         </div>
 
         <p class="text-sm md:text-base text-[var(--text)] font-medium leading-relaxed pt-2">
-          Développeur logiciel passionné avec 3+ ans d'expérience dans la conception de produits SaaS et d'applications Web performantes. Spécialisé dans l'intégration d'architectures IA, la création de Design Systems et la Data Visualization.
+          Ingénieur logiciel & data alliant développement full-stack moderne (Vue/Nuxt, TypeScript, FastAPI) et expertise data (SQL avancé, modélisation relationnelle, pipelines ETL et dashboards décisionnels). Passionné par l'intégration de l'IA et la création de produits numériques performants.
         </p>
       </header>
 
@@ -183,37 +183,37 @@ const stats = [
 ]
 
 const skillGroups = {
-  "Frontend & UI/UX": ["Vue.js", "Nuxt.js", "React.js", "Next.js", "Tailwind CSS", "Pinia", "Storybook"],
-  "IA Workflow & Spec": ["Cursor", "Antigravity", "Claude Code", "Spec-Driven", "Context Engineering"],
-  "Backend & DB": ["FastAPI (Python)", "Nest.js", "Node.js", "Supabase (PostgreSQL)", "REST API"],
-  "Testing & Ops": ["Vitest", "Jest", "Playwright", "Sentry", "Docker", "CI/CD Actions"]
+  "Software & Frontend": ["Vue.js", "Nuxt.js", "React.js", "Next.js", "Tailwind CSS", "Pinia", "Storybook", "TypeScript"],
+  "Data & Business Intelligence": ["SQL Avancé", "PostgreSQL", "Supabase", "Metabase", "Power BI", "Data Dictionary", "ETL/ELT"],
+  "Backend & Cloud": ["FastAPI (Python)", "Nest.js", "Node.js", "Firebase Firestore", "REST APIs", "AWS S3", "Docker"],
+  "IA Workflow & Testing": ["Cursor", "Antigravity", "Claude Code", "Spec-Driven", "Vitest", "Jest", "Sentry"]
 }
 
 const experience = [
   {
     period: "AOÛT 2024 – OCT 2025",
-    role: "Software Engineer",
+    role: "Fullstack Développeur & Data Analyst",
     company: "Carviz",
     desc: "Startup IA — Produit SaaS d'inspection et d'estimation automatisée de dommages véhicules.",
     bullets: [
       "Conception et maintenance d'un Design System multi-thèmes (+50 composants UI réutilisables typés Vue/Nuxt/TS) réduisant de 40% le temps d'intégration.",
-      "Développement du dashboard analytics KPI (ApexCharts, Unovis) alimenté par un store Pinia optimisé.",
-      "Intégration de fonctionnalités Computer Vision (upscale HD, détourage) alimentées par l'IA.",
-      "Refactorisation de l'architecture frontend \"AI-Ready\" & Spec-Driven pour décupler les assistants IA agentiques.",
-      "Développement de microservices FastAPI (Python) et Supabase (PostgreSQL RLS).",
-      "Mise en place de tests (Vitest, Jest) et monitoring Sentry (réduction des bugs en prod de 60%)."
+      "Développement du dashboard analytics & KPIs de pilotage (ApexCharts, Unovis, store Pinia optimisé) pour l'aide à la décision métier.",
+      "Requêtes SQL avancées sous PostgreSQL/Supabase : calculs de tendances M/M-1, cohortes et analyses par concession (~700 rapports/mois).",
+      "Formalisation d'un Data Dictionary (définitions, granularité, règles de calcul) et contrôle qualité/structuration des flux issus de modèles IA.",
+      "Architecture 'AI-Ready' & Spec-Driven pour assistants agentiques, backend FastAPI (Python) et Supabase RLS.",
+      "Mise en place de tests (Vitest, Jest) et monitoring Sentry, réduisant les bugs en production de 60%."
     ]
   },
   {
     period: "JAN 2023 – AVRIL 2024",
-    role: "Software Engineer",
+    role: "Fullstack Développeur & Data Engineer",
     company: "FCJM",
-    desc: "Dashboard de gestion logistique métier.",
+    desc: "Dashboard logistique métier et indicateurs de performance.",
     bullets: [
-      "Développement de 5 fonctionnalités majeures du dashboard logistique avec React.js / Next.js en Scrum.",
-      "Implémentation du backend Firebase (Firestore, Security Rules, Firebase Hosting).",
-      "Design d'interfaces accessibles WCAG (-30% de retours utilisateurs).",
-      "Tests unitaires Jest (couverture 70%)."
+      "Développement de 5 fonctionnalités de gestion logistique avec React.js / Next.js en méthode Agile/Scrum.",
+      "Conception de tableaux de bord logistiques et d'indicateurs opérationnels pour utilisateurs métier.",
+      "Modélisation des collections Firebase Firestore, sécurisation des règles d'accès et flux réactifs de métriques.",
+      "Conception d'interfaces ergonomiques et accessibles WCAG (-30% retours négatifs) et tests Jest (couverture 70%)."
     ]
   }
 ]
