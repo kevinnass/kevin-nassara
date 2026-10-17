@@ -183,37 +183,39 @@ const stats = [
 ]
 
 const skillGroups = {
-  "Software & Frontend": ["Vue.js", "Nuxt.js", "React.js", "Next.js", "Tailwind CSS", "Pinia", "Storybook", "TypeScript"],
-  "Data & Business Intelligence": ["SQL Avancé", "PostgreSQL", "Supabase", "Metabase", "Power BI", "Data Dictionary", "ETL/ELT"],
-  "Backend & Cloud": ["FastAPI (Python)", "Nest.js", "Node.js", "Firebase Firestore", "REST APIs", "AWS S3", "Docker"],
-  "IA Workflow & Testing": ["Cursor", "Antigravity", "Claude Code", "Spec-Driven", "Vitest", "Jest", "Sentry"]
+  "Software & Frontend": ["Vue.js", "Nuxt.js", "React.js", "Next.js", "TypeScript", "Tailwind CSS", "Pinia", "Storybook", "PWA"],
+  "Backend & Cloud": ["FastAPI (Python)", "Nest.js", "Node.js", "Supabase (PostgreSQL)", "Firebase", "Redis", "Prisma", "AWS", "Docker"],
+  "IA Workflow & Spec-Driven": ["Claude Code", "Cursor", "Antigravity", "Spec-Driven", "Context Engineering", "Computer Vision"],
+  "Testing & Observabilité": ["Vitest", "Jest", "Playwright", "Cypress", "Sentry (Tracing & Replay)", "WCAG"],
+  "Langages de programmation": ["JavaScript / TypeScript", "Python", "C/C++", "Rust"],
+  "Data & Business Intelligence": ["SQL Avancé", "PostgreSQL", "Supabase", "Metabase", "Power BI", "Data Dictionary", "ETL/ELT"]
 }
 
 const experience = [
   {
     period: "AOÛT 2024 – OCT 2025",
-    role: "Fullstack Développeur & Data Analyst",
+    role: "Software Engineer & Data",
     company: "Carviz",
     desc: "Startup IA — Produit SaaS d'inspection et d'estimation automatisée de dommages véhicules.",
     bullets: [
-      "Conception et maintenance d'un Design System multi-thèmes (+50 composants UI réutilisables typés Vue/Nuxt/TS) réduisant de 40% le temps d'intégration.",
-      "Développement du dashboard analytics & KPIs de pilotage (ApexCharts, Unovis, store Pinia optimisé) pour l'aide à la décision métier.",
-      "Requêtes SQL avancées sous PostgreSQL/Supabase : calculs de tendances M/M-1, cohortes et analyses par concession (~700 rapports/mois).",
-      "Formalisation d'un Data Dictionary (définitions, granularité, règles de calcul) et contrôle qualité/structuration des flux issus de modèles IA.",
-      "Architecture 'AI-Ready' & Spec-Driven pour assistants agentiques, backend FastAPI (Python) et Supabase RLS.",
-      "Mise en place de tests (Vitest, Jest) et monitoring Sentry, réduisant les bugs en production de 60%."
+      "Conception et maintenance d'un Design System multi-thèmes (+50 composants UI réutilisables et typés Vue.js, Nuxt.js, Tailwind CSS, TypeScript), réduisant de 40% le temps d'intégration.",
+      "Intégration de fonctionnalités IA Computer Vision : workflows d'édition d'images (upscale HD, détourage d'arrière-plan) et vues d'estimation automatisée par modèles IA.",
+      "Refactorisation de l'architecture frontend 'AI-Ready' & Spec-Driven pour décupler l'efficacité des assistants IA agentiques (Claude Code, Cursor).",
+      "Développement de microservices back-end avec FastAPI (Python) et Supabase (PostgreSQL) : modélisation relationnelle et Row Level Security (RLS).",
+      "Développement du dashboard analytics & KPIs métier (ApexCharts, Unovis, store Pinia optimisé avec cache et debouncing).",
+      "Testing et observabilité en production (Vitest, Jest, Sentry Tracing & Session Replay), réduisant les bugs de 60% et accélérant la résolution des incidents."
     ]
   },
   {
     period: "JAN 2023 – AVRIL 2024",
-    role: "Fullstack Développeur & Data Engineer",
+    role: "Software Engineer",
     company: "FCJM",
-    desc: "Dashboard logistique métier et indicateurs de performance.",
+    desc: "Dashboard de gestion logistique métier et pilotage des flux.",
     bullets: [
-      "Développement de 5 fonctionnalités de gestion logistique avec React.js / Next.js en méthode Agile/Scrum.",
-      "Conception de tableaux de bord logistiques et d'indicateurs opérationnels pour utilisateurs métier.",
-      "Modélisation des collections Firebase Firestore, sécurisation des règles d'accès et flux réactifs de métriques.",
-      "Conception d'interfaces ergonomiques et accessibles WCAG (-30% retours négatifs) et tests Jest (couverture 70%)."
+      "Développement de 5 fonctionnalités principales de gestion logistique avec React.js et Next.js, livré en plusieurs sprints Scrum.",
+      "Implémentation backend sur Firebase : modélisation des collections Firestore, règles de sécurité et déploiement continu via Firebase Hosting.",
+      "Conception d'interfaces ergonomiques et accessibles (conformité WCAG), réduisant de 30% les retours utilisateurs négatifs.",
+      "Mise en place de tests unitaires avec Jest (couverture 70%), assurant la fiabilité des fonctionnalités critiques du dashboard."
     ]
   }
 ]

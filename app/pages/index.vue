@@ -36,164 +36,132 @@
             </div>
 
             <p class="font-sans text-sm sm:text-base md:text-lg text-stone-600 dark:text-stone-300 font-normal leading-relaxed max-w-xl mx-auto">
-              Ingénieur logiciel & data alliant développement full-stack moderne (Vue/Nuxt, TypeScript, FastAPI) et expertise data (SQL avancé, pipelines ETL, modélisation relationnelle et dashboards décisionnels). Passionné par l'intégration de l'IA et la création d'expériences numériques performantes.
+              Software Engineer passionné par l'architecture logicielle, le développement full-stack moderne (Vue/Nuxt, React/Next, TypeScript, FastAPI) et les produits SaaS intégrant l'IA. De la conception UI/UX (Design Systems, accessibilité WCAG) au back-end (microservices, sécurité RLS, observabilité Sentry) et à la data, je conçois des applications modulaires, robustes et centrées sur l'utilisateur.
             </p>
 
             <div class="pt-2 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 text-xs font-sans text-stone-500 dark:text-stone-400">
               <span class="px-3 py-1 rounded-full bg-stone-200/50 dark:bg-stone-800/60 border border-stone-300/40 dark:border-stone-700/40">Full-Stack & SaaS</span>
-              <span class="px-3 py-1 rounded-full bg-stone-200/50 dark:bg-stone-800/60 border border-stone-300/40 dark:border-stone-700/40">Data & BI Décisionnel</span>
-              <span class="px-3 py-1 rounded-full bg-stone-200/50 dark:bg-stone-800/60 border border-stone-300/40 dark:border-stone-700/40">Workflows IA</span>
+              <span class="px-3 py-1 rounded-full bg-stone-200/50 dark:bg-stone-800/60 border border-stone-300/40 dark:border-stone-700/40">Design Systems & UI/UX</span>
+              <span class="px-3 py-1 rounded-full bg-stone-200/50 dark:bg-stone-800/60 border border-stone-300/40 dark:border-stone-700/40">Architectures "AI-Ready"</span>
+              <span class="px-3 py-1 rounded-full bg-stone-200/50 dark:bg-stone-800/60 border border-stone-300/40 dark:border-stone-700/40">Microservices FastAPI</span>
+              <span class="px-3 py-1 rounded-full bg-stone-200/50 dark:bg-stone-800/60 border border-stone-300/40 dark:border-stone-700/40">Testing & Sentry</span>
               <span class="px-3 py-1 rounded-full bg-stone-200/50 dark:bg-stone-800/60 border border-stone-300/40 dark:border-stone-700/40">Paris, France</span>
             </div>
           </section>
 
-          <!-- ÉTAPE 1 : SOFTWARE (CONTENU CV FULLSTACK / SOFTWARE ENGINEER) -->
+          <!-- ÉTAPE 1 : EXPÉRIENCES (FUSION SOFTWARE & DATA AVEC SWITCH PAR EXPÉRIENCE) -->
           <section 
             v-else-if="currentStageIndex === 1" 
             key="stage-1" 
-            class="space-y-4 max-w-2xl mx-auto text-left max-h-[72vh] overflow-y-auto no-scrollbar pr-1"
+            class="space-y-4 max-w-2xl mx-auto text-left max-h-[78vh] sm:max-h-[82vh] overflow-y-auto no-scrollbar pr-1 pb-6"
           >
+            <!-- En-tête de section épuré sans cards -->
             <div class="space-y-1">
               <span class="text-xs uppercase tracking-[0.4em] text-stone-400 dark:text-stone-500 font-medium font-sans">
                 0 1
               </span>
-              <h2 class="font-display font-medium text-4xl sm:text-5xl md:text-6xl text-stone-900 dark:text-stone-100 tracking-tight leading-none">
-                Software
-              </h2>
+              <div class="flex items-center justify-between gap-3">
+                <h2 class="font-display font-medium text-4xl sm:text-5xl md:text-6xl text-stone-900 dark:text-stone-100 tracking-tight leading-none">
+                  Expériences
+                </h2>
+                <span class="text-[11px] font-mono px-3 py-1 rounded-full bg-stone-200/50 dark:bg-stone-800/60 text-stone-600 dark:text-stone-300 border border-stone-300/40 dark:border-stone-700/40 font-medium">
+                  Software & Data
+                </span>
+              </div>
               <p class="font-sans text-xs sm:text-sm text-stone-500 dark:text-stone-400 font-normal leading-relaxed pt-1">
-                Conception d'applications SaaS modulaires, Design Systems multi-thèmes, architectures Spec-Driven et intégration IA.
+                Conception logicielle end-to-end : Design Systems multi-thèmes, architectures AI-Ready, microservices FastAPI, observabilité Sentry et data.
               </p>
             </div>
 
-            <div class="space-y-3 pt-2">
-              <!-- Expérience Carviz -->
-              <div class="p-3.5 sm:p-4 rounded-2xl bg-stone-100/70 dark:bg-stone-900/50 border border-stone-200/70 dark:border-stone-800 space-y-2">
-                <div class="flex items-baseline justify-between gap-2">
-                  <h3 class="font-display font-medium text-lg sm:text-xl text-stone-900 dark:text-stone-100">
-                    Fullstack Développeur — <span class="text-amber-700 dark:text-sky-300">Carviz</span>
-                  </h3>
-                  <span class="font-sans text-[11px] text-stone-400 dark:text-stone-500 uppercase tracking-wider shrink-0">
-                    Août 2024 – Oct 2025
-                  </span>
+            <!-- Liste des expériences : pas de cards, typographie et lignes directrices épurées -->
+            <div class="space-y-5 pt-1">
+              <article 
+                v-for="exp in experiencesList" 
+                :key="exp.id" 
+                class="space-y-2 pb-5 border-b border-stone-200/60 dark:border-stone-800/70 last:border-b-0 last:pb-0"
+              >
+                <!-- En-tête : Entreprise, Rôle dynamique, Période et Switcher -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div class="flex flex-wrap items-baseline gap-x-2.5 gap-y-0.5">
+                    <h3 class="font-display font-medium text-xl sm:text-2xl text-stone-900 dark:text-stone-100">
+                      {{ exp.company }}
+                    </h3>
+                    <span class="font-sans text-xs sm:text-sm font-medium text-amber-800 dark:text-sky-300">
+                      — {{ exp.tracks[experienceTracks[exp.id]].role }}
+                    </span>
+                    <span class="font-sans text-[11px] text-stone-400 dark:text-stone-500 uppercase tracking-wider">
+                      ({{ exp.period }})
+                    </span>
+                  </div>
+
+                  <!-- Switcher simple et fluide Software / Data pour chaque expérience -->
+                  <div class="inline-flex items-center p-0.5 rounded-full bg-stone-200/60 dark:bg-stone-800/70 border border-stone-300/50 dark:border-stone-700/50 text-[11px] font-sans self-start sm:self-auto shrink-0">
+                    <button 
+                      type="button"
+                      @click="setExpTrack(exp.id, 'software')"
+                      class="px-2.5 py-0.5 rounded-full transition-all duration-200 font-medium cursor-pointer"
+                      :class="experienceTracks[exp.id] === 'software' 
+                        ? 'bg-amber-200/90 dark:bg-sky-300 text-stone-950 font-semibold shadow-xs' 
+                        : 'text-stone-600 dark:text-stone-400 hover:text-stone-950 dark:hover:text-stone-100'"
+                      title="Afficher les missions Software"
+                    >
+                      Software
+                    </button>
+                    <button 
+                      type="button"
+                      @click="setExpTrack(exp.id, 'data')"
+                      class="px-2.5 py-0.5 rounded-full transition-all duration-200 font-medium cursor-pointer"
+                      :class="experienceTracks[exp.id] === 'data' 
+                        ? 'bg-amber-200/90 dark:bg-sky-300 text-stone-950 font-semibold shadow-xs' 
+                        : 'text-stone-600 dark:text-stone-400 hover:text-stone-950 dark:hover:text-stone-100'"
+                      title="Afficher les missions Data"
+                    >
+                      Data
+                    </button>
+                  </div>
                 </div>
-                <p class="font-sans text-xs text-stone-600 dark:text-stone-300">
-                  SaaS d'inspection et d'estimation automatisée des dommages véhicules par IA.
+
+                <!-- Contexte court de la mission -->
+                <p v-if="exp.context" class="font-sans text-xs text-stone-500 dark:text-stone-400">
+                  {{ exp.context }}
                 </p>
-                <ul class="font-sans text-xs text-stone-500 dark:text-stone-400 space-y-1.5 list-disc list-inside">
-                  <li><strong>Design System multi-thèmes</strong> : +50 composants UI typés réutilisables (Vue.js, Nuxt.js, Tailwind, TS), réduisant de 40% le temps d'intégration.</li>
-                  <li><strong>Architecture "AI-Ready" & Spec-Driven</strong> : structuration stricte de la codebase et formalisation contextuelle pour assistants agentiques (Claude Code, Cursor).</li>
-                  <li><strong>Backend FastAPI & Supabase</strong> : APIs Python, requêtes optimisées et authentification Row Level Security (RLS).</li>
-                  <li><strong>Testing & Observabilité</strong> : suite Vitest/Jest et monitoring Sentry (Tracing & Session Replay), -60% de bugs en production.</li>
-                </ul>
-              </div>
 
-              <!-- Expérience FCJM -->
-              <div class="p-3.5 sm:p-4 rounded-2xl bg-stone-100/70 dark:bg-stone-900/50 border border-stone-200/70 dark:border-stone-800 space-y-2">
-                <div class="flex items-baseline justify-between gap-2">
-                  <h3 class="font-display font-medium text-lg sm:text-xl text-stone-900 dark:text-stone-100">
-                    Fullstack Développeur — <span class="text-amber-700 dark:text-sky-300">FCJM</span>
-                  </h3>
-                  <span class="font-sans text-[11px] text-stone-400 dark:text-stone-500 uppercase tracking-wider shrink-0">
-                    Janv 2023 – Avril 2024
-                  </span>
-                </div>
-                <ul class="font-sans text-xs text-stone-500 dark:text-stone-400 space-y-1.5 list-disc list-inside">
-                  <li>Dashboard logistique en Scrum avec React.js et Next.js (5 fonctionnalités critiques de gestion).</li>
-                  <li>Modélisation collections Firebase Firestore, règles de sécurité et déploiement continu via Firebase Hosting.</li>
-                  <li>Conception d'interfaces ergonomiques et conformité WCAG (-30% retours utilisateurs négatifs), tests Jest (70% couverture).</li>
-                </ul>
-              </div>
+                <!-- Bullets de missions avec transition fade -->
+                <Transition name="track-fade" mode="out-in">
+                  <ul 
+                    :key="experienceTracks[exp.id]"
+                    class="font-sans text-xs sm:text-[13px] text-stone-600 dark:text-stone-300 space-y-1.5 pt-0.5"
+                  >
+                    <li 
+                      v-for="(bullet, bIdx) in exp.tracks[experienceTracks[exp.id]].bullets" 
+                      :key="bIdx"
+                      class="flex items-start gap-2 leading-relaxed"
+                    >
+                      <span class="text-amber-700 dark:text-sky-400 shrink-0 font-bold select-none">•</span>
+                      <span v-html="bullet"></span>
+                    </li>
+                  </ul>
+                </Transition>
+              </article>
 
-              <!-- Formation Académique -->
-              <div class="flex items-center justify-between py-2 px-3 rounded-xl bg-stone-200/40 dark:bg-stone-800/30 text-xs font-sans text-stone-600 dark:text-stone-300">
+              <!-- Formation Académique : simple ligne discrète sans card -->
+              <div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs font-sans text-stone-500 dark:text-stone-400 border-t border-stone-200/40 dark:border-stone-800/40">
                 <span>🎓 <strong>Master en Ingénierie Logiciel</strong> — EPITECH Paris (2020 – 2025)</span>
-                <span class="text-stone-400 hidden sm:inline">Spécialisation IoT (Barcelone)</span>
+                <span class="text-stone-400 dark:text-stone-500 text-[11px] sm:text-xs">Spécialisation IoT (Barcelone)</span>
               </div>
             </div>
           </section>
 
-          <!-- ÉTAPE 2 : DATA (CONTENU CV BI - DATA ANALYST / DATA ENGINEER) -->
+          <!-- ÉTAPE 2 : PROJETS (METS MES PROJETS GITHUB EN AVANT) -->
           <section 
             v-else-if="currentStageIndex === 2" 
             key="stage-2" 
             class="space-y-4 max-w-2xl mx-auto text-left max-h-[72vh] overflow-y-auto no-scrollbar pr-1"
           >
             <div class="space-y-1">
-              <span class="text-xs uppercase tracking-[0.4em] text-stone-400 dark:text-stone-500 font-medium font-sans">
-                0 2
-              </span>
-              <h2 class="font-display font-medium text-4xl sm:text-5xl md:text-6xl text-stone-900 dark:text-stone-100 tracking-tight leading-none">
-                Data
-              </h2>
-              <p class="font-sans text-xs sm:text-sm text-stone-500 dark:text-stone-400 font-normal leading-relaxed pt-1">
-                Extraction, modélisation relationnelle & NoSQL, requêtes SQL complexes et tableaux de bord décisionnels pour piloter l'activité.
-              </p>
-            </div>
-
-            <div class="space-y-3 pt-2">
-              <!-- Expérience Data Analyst Carviz -->
-              <div class="p-3.5 sm:p-4 rounded-2xl bg-stone-100/70 dark:bg-stone-900/50 border border-stone-200/70 dark:border-stone-800 space-y-2">
-                <div class="flex items-baseline justify-between gap-2">
-                  <h3 class="font-display font-medium text-lg sm:text-xl text-stone-900 dark:text-stone-100">
-                    Data Analyst — <span class="text-amber-700 dark:text-sky-300">Carviz</span>
-                  </h3>
-                  <span class="font-sans text-[11px] text-stone-400 dark:text-stone-500 uppercase tracking-wider shrink-0">
-                    Août 2024 – Oct 2025
-                  </span>
-                </div>
-                <ul class="font-sans text-xs text-stone-500 dark:text-stone-400 space-y-1.5 list-disc list-inside">
-                  <li><strong>Tableaux de bord décisionnels & KPIs métier</strong> : recueil et traduction des besoins direction en indicateurs clés (taux d'acceptation, volume d'inspections, ratios mensuels, précision des estimations).</li>
-                  <li><strong>Requêtes SQL avancées</strong> : calculs de tendances temporelles M/M-1, analyses de cohortes et métriques par concession sous PostgreSQL/Supabase (~700 rapports d'inspection/mois).</li>
-                  <li><strong>Data Dictionary & Gouvernance</strong> : formalisation des sources, définitions, granularité et règles de calcul pour aligner équipes métier et techniques.</li>
-                  <li><strong>Contrôle qualité & Ingestion IA</strong> : traitement, structuration et sécurisation des données issues de modèles IA pour fiabiliser les analyses opérationnelles.</li>
-                  <li><strong>Data Visualisation</strong> : conception de dashboards interactifs avec ApexCharts, Unovis et Vue/Nuxt.</li>
-                </ul>
-              </div>
-
-              <!-- Expérience Data Engineer FCJM -->
-              <div class="p-3.5 sm:p-4 rounded-2xl bg-stone-100/70 dark:bg-stone-900/50 border border-stone-200/70 dark:border-stone-800 space-y-2">
-                <div class="flex items-baseline justify-between gap-2">
-                  <h3 class="font-display font-medium text-lg sm:text-xl text-stone-900 dark:text-stone-100">
-                    Data Engineer — <span class="text-amber-700 dark:text-sky-300">FCJM</span>
-                  </h3>
-                  <span class="font-sans text-[11px] text-stone-400 dark:text-stone-500 uppercase tracking-wider shrink-0">
-                    Janv 2023 – Avril 2024
-                  </span>
-                </div>
-                <ul class="font-sans text-xs text-stone-500 dark:text-stone-400 space-y-1.5 list-disc list-inside">
-                  <li>Conception de tableaux de bord logistiques et d'indicateurs opérationnels pour utilisateurs métier.</li>
-                  <li>Modélisation des données sous Firebase Firestore, intégration d'APIs REST et flux réactifs pour restituer les métriques de performance.</li>
-                </ul>
-              </div>
-
-              <!-- Compétences Data Synthèse -->
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1 text-xs font-sans">
-                <div class="p-2.5 rounded-xl bg-stone-200/40 dark:bg-stone-800/30">
-                  <span class="font-semibold block text-stone-800 dark:text-stone-200">Pilotage & BI</span>
-                  <span class="text-stone-500 dark:text-stone-400 text-[11px]">Metabase, Power BI, Dashboards KPIs, Data storytelling</span>
-                </div>
-                <div class="p-2.5 rounded-xl bg-stone-200/40 dark:bg-stone-800/30">
-                  <span class="font-semibold block text-stone-800 dark:text-stone-200">Data & SQL</span>
-                  <span class="text-stone-500 dark:text-stone-400 text-[11px]">PostgreSQL, Supabase, Firestore, Data Dictionary</span>
-                </div>
-                <div class="p-2.5 rounded-xl bg-stone-200/40 dark:bg-stone-800/30">
-                  <span class="font-semibold block text-stone-800 dark:text-stone-200">Pipelines & IA</span>
-                  <span class="text-stone-500 dark:text-stone-400 text-[11px]">ETL/ELT, Python, APIs REST, n8n, Ingestion données IA</span>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- ÉTAPE 3 : PROJETS (METS MES PROJETS GITHUB EN AVANT) -->
-          <section 
-            v-else-if="currentStageIndex === 3" 
-            key="stage-3" 
-            class="space-y-4 max-w-2xl mx-auto text-left max-h-[72vh] overflow-y-auto no-scrollbar pr-1"
-          >
-            <div class="space-y-1">
               <div class="flex items-center justify-between">
                 <span class="text-xs uppercase tracking-[0.4em] text-stone-400 dark:text-stone-500 font-medium font-sans">
-                  0 3
+                  0 2
                 </span>
                 <a 
                   href="https://github.com/kevinnass" 
@@ -274,15 +242,15 @@
             </div>
           </section>
 
-          <!-- ÉTAPE 4 : STACK TECHNIQUE -->
+          <!-- ÉTAPE 3 : STACK TECHNIQUE -->
           <section 
-            v-else-if="currentStageIndex === 4" 
-            key="stage-4" 
+            v-else-if="currentStageIndex === 3" 
+            key="stage-3" 
             class="space-y-4 max-w-2xl mx-auto text-left max-h-[72vh] overflow-y-auto no-scrollbar pr-1"
           >
             <div class="space-y-1">
               <span class="text-xs uppercase tracking-[0.4em] text-stone-400 dark:text-stone-500 font-medium font-sans">
-                0 4
+                0 3
               </span>
               <h2 class="font-display font-medium text-4xl sm:text-5xl md:text-6xl text-stone-900 dark:text-stone-100 tracking-tight leading-none">
                 Stack
@@ -308,15 +276,15 @@
             </div>
           </section>
 
-          <!-- ÉTAPE 5 : CONTACT -->
+          <!-- ÉTAPE 4 : CONTACT -->
           <section 
-            v-else-if="currentStageIndex === 5" 
-            key="stage-5" 
+            v-else-if="currentStageIndex === 4" 
+            key="stage-4" 
             class="space-y-6 max-w-2xl mx-auto text-center"
           >
             <div class="space-y-1">
               <span class="text-xs uppercase tracking-[0.4em] text-stone-400 dark:text-stone-500 font-medium font-sans">
-                0 5
+                0 4
               </span>
               <h2 class="font-display font-medium text-5xl sm:text-6xl md:text-7xl text-stone-900 dark:text-stone-100 tracking-tight leading-none">
                 Contact
@@ -374,6 +342,7 @@ import ConceptHeader from '~/components/ConceptHeader.vue'
 import ScrollProgress from '~/components/ScrollProgress.vue'
 import FloatingNavHint from '~/components/FloatingNavHint.vue'
 import AppFooter from '~/components/AppFooter.vue'
+import { useAmbientSound } from '~/composables/useAmbientSound'
 
 // Métadonnées SEO
 useHead({
@@ -383,14 +352,83 @@ useHead({
   ]
 })
 
-// Définition des 6 chapitres conceptuels (l'ordre du header : Software, Data, Projets, Stack, Contact)
+const { playButtonSound } = useAmbientSound()
+
+// Définition des 5 chapitres conceptuels (l'ordre du header : Expériences, Projets, Stack, Contact)
 const stages = [
   { id: 'hero', label: 'Accueil' },
-  { id: 'software', label: 'Software' },
-  { id: 'data', label: 'Data' },
+  { id: 'experiences', label: 'Expériences' },
   { id: 'projets', label: 'Projets' },
   { id: 'stack', label: 'Stack' },
   { id: 'contact', label: 'Contact' },
+]
+
+// Suivi réactif de la piste active (Software ou Data) pour chaque expérience
+const experienceTracks = ref<Record<string, 'software' | 'data'>>({
+  carviz: 'software',
+  fcjm: 'software'
+})
+
+const setExpTrack = (id: string, track: 'software' | 'data') => {
+  experienceTracks.value[id] = track
+  playButtonSound()
+}
+
+// Expériences fusionnées avec missions Software et Data pour chaque entreprise
+const experiencesList = [
+  {
+    id: 'carviz',
+    company: 'Carviz',
+    period: 'Août 2024 – Oct 2025',
+    context: "SaaS d'inspection et d'estimation automatisée des dommages véhicules par IA.",
+    tracks: {
+      software: {
+        role: 'Software Engineer',
+        bullets: [
+          '<strong>Design System multi-thèmes</strong> : conception et maintenance d\'un Design System de +50 composants UI réutilisables et typés (Vue.js, Nuxt.js, Tailwind CSS, TypeScript), réduisant de 40% le temps d\'intégration et éliminant les incohérences visuelles.',
+          '<strong>Intégration IA Computer Vision</strong> : mise en place des workflows d\'édition d\'images (upscale HD, détourage d\'arrière-plan) et des vues d\'estimation automatisée des dommages véhicules alimentées par les modèles de la squad IA.',
+          '<strong>Architecture "AI-Ready" & Spec-Driven</strong> : restructuration de la codebase frontend (Nuxt.js, auto-imports, conventions strictes de typage) et formalisation contextuelle (copilot-instructions) décuplant l\'efficacité des assistants IA agentiques (Claude Code, Cursor).',
+          '<strong>Dashboard Analytics & State Management</strong> : création d\'interfaces de Data Visualization interactives (ApexCharts, Unovis) alimentées par un store Pinia optimisé (cache mémoire/localStorage, debouncing).',
+          '<strong>Microservices Backend & Sécurité RLS</strong> : développement d\'APIs backend avec FastAPI (Python) et Supabase (PostgreSQL), modélisation relationnelle, requêtes optimisées et authentification Row Level Security.',
+          '<strong>Testing & Observabilité Sentry</strong> : suite de tests automatisés (Vitest, Jest) et monitoring Sentry (Browser Tracing & Session Replay), réduisant les bugs en production de 60% et accélérant la résolution des incidents.'
+        ]
+      },
+      data: {
+        role: 'Data Analyst',
+        bullets: [
+          '<strong>Tableaux de bord décisionnels & KPIs métier</strong> : recueil et traduction des besoins direction en indicateurs clés (taux d\'acceptation, volume d\'inspections, ratios mensuels, précision des estimations).',
+          '<strong>Requêtes SQL avancées</strong> : calculs de tendances temporelles M/M-1, analyses de cohortes et métriques par concession sous PostgreSQL/Supabase (~700 rapports d\'inspection/mois).',
+          '<strong>Data Dictionary & Gouvernance</strong> : formalisation des sources, définitions, granularité et règles de calcul pour aligner équipes métier et techniques.',
+          '<strong>Contrôle qualité & Ingestion IA</strong> : traitement, structuration et sécurisation des données issues de modèles IA pour fiabiliser les analyses opérationnelles.',
+          '<strong>Data Visualisation</strong> : conception de dashboards interactifs avec ApexCharts, Unovis et Vue/Nuxt.'
+        ]
+      }
+    }
+  },
+  {
+    id: 'fcjm',
+    company: 'FCJM',
+    period: 'Janv 2023 – Avril 2024',
+    context: 'Plateforme & dashboard de gestion logistique métier.',
+    tracks: {
+      software: {
+        role: 'Software Engineer',
+        bullets: [
+          '<strong>Dashboard logistique React & Next.js</strong> : développement de 5 fonctionnalités principales de gestion livrées en plusieurs sprints agiles (Scrum).',
+          '<strong>Backend Firebase & Cloud Hosting</strong> : modélisation des collections Firestore, règles de sécurité RLS et déploiement continu via Firebase Hosting.',
+          '<strong>Ergonomie UI/UX & Accessibilité WCAG</strong> : conception d\'interfaces accessibles et ergonomiques, réduisant de 30% les retours utilisateurs négatifs sur la période.',
+          '<strong>Testing Jest & Fiabilité</strong> : mise en place de tests unitaires avec Jest (couverture 70%), assurant la fiabilité des fonctionnalités critiques du dashboard.'
+        ]
+      },
+      data: {
+        role: 'Data Engineer',
+        bullets: [
+          'Conception de tableaux de bord logistiques et d\'indicateurs opérationnels pour utilisateurs métier.',
+          'Modélisation des données sous Firebase Firestore, intégration d\'APIs REST et flux réactifs pour restituer les métriques de performance.'
+        ]
+      }
+    }
+  }
 ]
 
 const containerRef = ref<HTMLElement | null>(null)
@@ -412,7 +450,7 @@ const handleScroll = () => {
   const rawProgress = Math.min(Math.max(scrollTop / maxScroll, 0), 1)
   scrollProgress.value = rawProgress
 
-  // Découpage en 6 paliers avec transition fluide
+  // Découpage en paliers avec transition fluide
   const totalStages = stages.length
   const calculatedIndex = Math.min(Math.floor(rawProgress * totalStages), totalStages - 1)
   currentStageIndex.value = calculatedIndex
@@ -490,12 +528,14 @@ const githubProjects = [
   }
 ]
 
-// Écosystème Technique complet issu des CVs Software & Data
+// Écosystème Technique complet issu des compétences Software & Data
 const skillClusters = {
-  'Software & Front-End': 'Vue.js, Nuxt.js, React.js, Next.js, TypeScript, Tailwind CSS, Pinia, Storybook, PWA',
-  'Backend & Cloud': 'FastAPI (Python), Node.js, Nest.js, REST APIs, GraphQL, Supabase, Redis, AWS S3, Docker',
-  'Data & BI': 'SQL Avancé, PostgreSQL, Metabase, Power BI, Firebase Firestore, ETL/ELT, Data Dictionary, ApexCharts, Unovis',
-  'IA & Méthodes': 'Claude Code, Cursor, Antigravity, Spec-Driven, Computer Vision, Vitest, Jest, Sentry, CI/CD, Agile/Scrum'
+  'Frontend & UI Engineering': 'Vue.js, Nuxt.js, React.js, Next.js, TypeScript, Tailwind CSS, Pinia (Store), Storybook, PWA',
+  'Backend & Cloud Services': 'FastAPI (Python), Nest.js, Node.js, Supabase (PostgreSQL), Firebase Firestore, Redis, Prisma, REST API, GraphQL, AWS, Docker, Kubernetes',
+  'Workflows IA & Méthodologie': 'Claude Code, Cursor, Antigravity, Spec-Driven Development, Context Engineering, Computer Vision, Agile/Scrum, Code Review',
+  'Testing & Observabilité': 'Vitest (unit), Jest, Playwright (e2e), Cypress, Sentry (Browser Tracing & Replay), Accessibilité WCAG, CI/CD Actions',
+  'Langages de programmation': 'JavaScript / TypeScript, Python, C/C++, Rust',
+  'Data & Visualisation': 'SQL Avancé, PostgreSQL, Supabase, Metabase, Power BI, Data Dictionary, ETL/ELT, ApexCharts, Unovis'
 }
 </script>
 
@@ -507,5 +547,21 @@ const skillClusters = {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Transition fluide lors du switch Software / Data */
+.track-fade-enter-active,
+.track-fade-leave-active {
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.track-fade-enter-from {
+  opacity: 0;
+  transform: translateY(3px);
+}
+
+.track-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-3px);
 }
 </style>
